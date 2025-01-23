@@ -1,0 +1,108 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewMedicalCenter' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "Name" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="medicalCenter.name"
+          #nameModel="ngModel"
+          #nameEl
+        />
+        <abp-validation-summary
+          [control]="nameModel"
+          [controlEl]="nameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="phoneNumber">
+          {{ "PhoneNumber" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="phoneNumber"
+            required
+            [(ngModel)]="medicalCenter.phoneNumber"
+            #phoneNumberModel="ngModel"
+            #phoneNumberEl
+          />
+          <abp-validation-summary
+            [control]="phoneNumberModel"
+            [controlEl]="phoneNumberEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="schedule">
+          {{ "Schedule" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="schedule"
+            id="schedule"
+            required
+            [(ngModel)]="medicalCenter.schedule"
+            #scheduleModel="ngModel"
+            #scheduleEl
+          />
+          <abp-validation-summary
+            [control]="scheduleModel"
+            [controlEl]="scheduleEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="address">
+          {{ "Address" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            id="address"
+            required
+            [(ngModel)]="medicalCenter.address"
+            #addressModel="ngModel"
+            #addressEl
+          />
+          <abp-validation-summary
+            [control]="addressModel"
+            [controlEl]="addressEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

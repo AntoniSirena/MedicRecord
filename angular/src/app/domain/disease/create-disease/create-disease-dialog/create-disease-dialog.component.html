@@ -1,0 +1,105 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewDisease' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="code">
+          {{ "Code" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="code"
+            id="code"
+            minlength="2"
+            maxlength="64"
+            [(ngModel)]="disease.code"
+            #codeModel="ngModel"
+            #codeEl
+          />
+          <abp-validation-summary
+            [control]="codeModel"
+            [controlEl]="codeEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "Name" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="disease.name"
+          #nameModel="ngModel"
+          #nameEl
+        />
+        <abp-validation-summary
+          [control]="nameModel"
+          [controlEl]="nameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="description">
+          {{ "Description" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="description"
+            [(ngModel)]="disease.description"
+            #descriptionModel="ngModel"
+            #descriptionEl
+          />
+          <abp-validation-summary
+            [control]="descriptionModel"
+            [controlEl]="descriptionEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row mb-0">
+        <label class="col-md-3 col-form-label">
+          {{ "IsActive" | localize }}
+        </label>
+        <div class="col-md-9">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="isActive"
+              id="isActive"
+              [(ngModel)]="disease.isActive"
+            />
+            <label class="custom-control-label mt-2" for="isActive"></label>
+          </div>
+        </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
