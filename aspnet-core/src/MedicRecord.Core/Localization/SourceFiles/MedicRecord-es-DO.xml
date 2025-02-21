@@ -150,6 +150,30 @@
 		<text name="DiseasesDelete">Eliminar enfermedades</text>
 		<text name="EditDiseases">Editar enfermedades</text>
 		<text name="CreateNewDisease">Crear nueva enfermedad</text>
+
+		<text name="Patients">Pacientes</text>
+		<text name="PatientsGetAll">Ver pacientes</text>
+		<text name="PatientsCreate">Crear pacientes</text>
+		<text name="PatientsUpdate">Actualizar pacientes</text>
+		<text name="PatientsDelete">Eliminar pacientes</text>
+		<text name="EditPatients">Editar pacientes</text>
+		<text name="CreateNewPatient">Crear nuevo paciente</text>
+
+		<text name="RecordNumber">Número de tarjeta</text>
+		<text name="FirstName">Primer nombre</text>
+		<text name="SecondName">Segundo nombre</text>
+		<text name="FirstSurname">Primer apellido</text>
+		<text name="SecondSurname">Segundo apellido</text>
+		<text name="MotherNames">Nombres maternos</text>
+		<text name="MotherSurnames">Apellidos maternos</text>
+		<text name="FatherNames">Nombres paternos</text>
+		<text name="FatherSurnames">Apellidos paternos</text>
+		<text name="MotherIDNumber">Número de cedula/pasaporte materno</text>
+		<text name="BirthDate">Fecha de nacimiento</text>
+		<text name="Size">Tamaño</text>
+		<text name="Weight">Peso</text>
+		<text name="HeadCircumference">Tamaño cefalico</text>
+		<text name="BloodType">Tipo de sangre</text>
 		
 	</texts>
 </localizationDictionary>

@@ -154,6 +154,30 @@
 		<text name="DiseasesDelete">Delete diseases</text>
 		<text name="EditDiseases">Edit diseases</text>
 		<text name="CreateNewDisease">Cretae new disease</text>
+
+		<text name="Patients">Patients</text>
+		<text name="PatientsGetAll">GetAll patients</text>
+		<text name="PatientsCreate">Create patients</text>
+		<text name="PatientsUpdate">Update patients</text>
+		<text name="PatientsDelete">Delete patients</text>
+		<text name="EditPatients">Edit patients</text>
+		<text name="CreateNewPatient">Cretae new patient</text>
+
+		<text name="RecordNumber">Record number</text>
+		<text name="FirstName">First name</text>
+		<text name="SecondName">Second name</text>
+		<text name="FirstSurname">First surname</text>
+		<text name="SecondSurname">Second surname</text>
+		<text name="MotherNames">Mother names</text>
+		<text name="MotherSurnames">Mother surnames</text>
+		<text name="FatherNames">Father names</text>
+		<text name="FatherSurnames">Father surnames</text>
+		<text name="MotherIDNumber">Mother id number</text>
+		<text name="BirthDate">Birth bate</text>
+		<text name="Size">Size</text>
+		<text name="Weight">Weight</text>
+		<text name="HeadCircumference">Head circumference</text>
+		<text name="BloodType">Blood type</text>
 		
 	</texts>
 </localizationDictionary>

@@ -1,0 +1,347 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditPatient' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+
+    
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="recordNumber">
+          {{ "RecordNumber" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="recordNumber"
+            id="recordNumber"
+            minlength="1"
+            maxlength="64"
+            required
+            [(ngModel)]="patient.recordNumber"
+            #recordNumberModel="ngModel"
+            #recordNumberEl
+          />
+          <abp-validation-summary
+            [control]="recordNumberModel"
+            [controlEl]="recordNumberEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="firstName">
+        {{ "FirstName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          id="firstName"
+          minlength="1"
+          maxlength="64"
+          required
+          [(ngModel)]="patient.firstName"
+          #firstNameModel="ngModel"
+          #firstNameEl
+        />
+        <abp-validation-summary
+          [control]="firstNameModel"
+          [controlEl]="firstNameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="secondName">
+          {{ "SecondName" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="secondName"
+            id="secondName"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.secondName"
+            #secondNameModel="ngModel"
+            #secondNameEl
+          />
+          <abp-validation-summary
+            [control]="secondNameModel"
+            [controlEl]="secondNameEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="firstSurname">
+          {{ "FirstSurname" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="firstSurname"
+            id="firstSurname"
+            minlength="1"
+            maxlength="64"
+            required
+            [(ngModel)]="patient.firstSurname"
+            #firstSurnameModel="ngModel"
+            #firstSurnameEl
+          />
+          <abp-validation-summary
+            [control]="firstSurnameModel"
+            [controlEl]="firstSurnameEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="secondSurname">
+          {{ "SecondSurname" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="secondSurname"
+            id="secondSurname"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.secondSurname"
+            #secondSurnameModel="ngModel"
+            #secondSurnameEl
+          />
+          <abp-validation-summary
+            [control]="secondSurnameModel"
+            [controlEl]="secondSurnameEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="motherNames">
+          {{ "MotherNames" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="motherNames"
+            id="motherNames"
+            minlength="1"
+            maxlength="64"
+            required
+            [(ngModel)]="patient.motherNames"
+            #motherNamesModel="ngModel"
+            #motherNamesModelEl
+          />
+          <abp-validation-summary
+            [control]="motherNamesModel"
+            [controlEl]="motherNamesModelEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="motherSurnames">
+          {{ "MotherSurnames" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="motherSurnames"
+            id="motherSurnames"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.motherSurnames"
+            #motherSurnamesModel="ngModel"
+            #motherSurnamesEl
+          />
+          <abp-validation-summary
+            [control]="motherSurnamesModel"
+            [controlEl]="motherSurnamesEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="motherIDNumber">
+          {{ "MotherIDNumber" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="motherIDNumber"
+            id="motherIDNumber"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.motherIDNumber"
+            #motherIDNumberModel="ngModel"
+            #motherIDNumberEl
+          />
+          <abp-validation-summary
+            [control]="motherIDNumberModel"
+            [controlEl]="motherIDNumberEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="fatherNames">
+          {{ "FatherNames" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="fatherNames"
+            id="fatherNames"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.fatherNames"
+            #fatherNamesModel="ngModel"
+            #fatherNamesEl
+          />
+          <abp-validation-summary
+            [control]="fatherNamesModel"
+            [controlEl]="fatherNamesEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="fatherSurnames">
+          {{ "FatherSurnames" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="fatherSurnames"
+            id="fatherSurnames"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.fatherSurnames"
+            #fatherSurnamesModel="ngModel"
+            #fatherSurnamesEl
+          />
+          <abp-validation-summary
+            [control]="fatherSurnamesModel"
+            [controlEl]="fatherSurnamesEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="birthDate">
+          {{ "BirthDate" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="date"
+            class="form-control"
+            name="birthDate"
+            id="birthDate"
+            minlength="1"
+            maxlength="64"
+            required
+            [(ngModel)]="patient.birthDate"
+            #birthDateModel="ngModel"
+            #birthDateModelEl
+          />
+          <abp-validation-summary
+            [control]="birthDateModel"
+            [controlEl]="birthDateModelEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="size">
+          {{ "Size" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="size"
+            id="size"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.size"
+            #sizeModel="ngModel"
+            #sizeEl
+          />
+          <abp-validation-summary
+            [control]="sizeModel"
+            [controlEl]="sizeEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="weight">
+          {{ "Weight" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="weight"
+            id="weight"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.weight"
+            #weightModel="ngModel"
+            #weightEl
+          />
+          <abp-validation-summary
+            [control]="weightModel"
+            [controlEl]="weightEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="headCircumference">
+          {{ "HeadCircumference" | localize }}
+        </label>
+        <div class="col-md-9">
+          <input
+            type="text"
+            class="form-control"
+            name="headCircumference"
+            id="headCircumference"
+            minlength="1"
+            maxlength="64"
+            [(ngModel)]="patient.headCircumference"
+            #headCircumferenceModel="ngModel"
+            #headCircumferenceEl
+          />
+          <abp-validation-summary
+            [control]="headCircumferenceModel"
+            [controlEl]="headCircumferenceEl"
+          ></abp-validation-summary>
+        </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!editForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

@@ -6,6 +6,8 @@ import * as ApiServiceProxies from './service-proxies';
 import { MedicalCenterService } from './../services/medical-center.service';
 import { SymptomService } from './../services/symptom.service';
 import { DiseaseService } from '../services/disease.service';
+import { PatientService } from '../services/patient.service';
+
 
 @NgModule({
     providers: [
@@ -19,6 +21,7 @@ import { DiseaseService } from '../services/disease.service';
         MedicalCenterService,
         SymptomService,
         DiseaseService,
+        PatientService,
 
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]

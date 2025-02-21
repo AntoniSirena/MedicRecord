@@ -90,6 +90,12 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                     'far fa-circle',
                     'Pages.Diseases'
                 ),
+                new MenuItem(
+                    this.l('Patients'),
+                    '/app/patients',
+                    'far fa-circle',
+                    'Pages.Patients'
+                ),
             ])
 
             /*new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [

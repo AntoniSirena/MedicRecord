@@ -22,7 +22,7 @@ namespace MedicRecord.Services.Patient.Dto
         public string FatherNames { get; set; }
         public string FatherSurnames { get; set; }
         public string MotherIDNumber { get; set; }
-        public DateOnly BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public decimal Size { get; set; }
         public decimal Weight { get; set; }
         public decimal HeadCircumference { get; set; }
@@ -32,5 +32,6 @@ namespace MedicRecord.Services.Patient.Dto
 
         public int? BloodTypeId { get; set; }
         public string BloodType_Name { get; set; }
+        public string MedicalCenter_Name { get; set; }
     }
 }

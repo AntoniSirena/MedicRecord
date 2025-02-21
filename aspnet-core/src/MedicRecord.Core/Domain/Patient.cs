@@ -21,18 +21,22 @@ namespace MedicRecord.Domain
         public string FatherNames { get; set; }
         public string FatherSurnames { get; set; }
         public string MotherIDNumber { get; set; }
-        public DateOnly BirthDate {  get; set; }
+        public DateTime BirthDate {  get; set; }
         public decimal Size { get; set; }
-        public  decimal Weight  { get; set; }
+        public  decimal Weight { get; set; }
         public decimal HeadCircumference { get; set; }
-        public int MedicalCenterId { get; set; }
         public bool IsActive { get; set; }
         public int? TenantId { get; set; }
 
         public int? BloodTypeId { get; set; }
+        public int? MedicalCenterId { get; set; }
+
 
         [ForeignKey("BloodTypeId")]
         public virtual BloodType BloodType { get; set; }
+
+        [ForeignKey("MedicalCenterId")]
+        public virtual MedicalCenter MedicalCenter { get; set; }
 
     }
 }

@@ -23,6 +23,8 @@ import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 
+import { DatePipe } from '@angular/common';
+
 import { MedicalCenterComponent } from './domain/medical-center/medical-center.component';
 import { CreateMedicalCenterDialogComponent } from './domain/medical-center/create-medical-center/create-medical-center-dialog/create-medical-center-dialog.component';
 import { EditMedicalCenterDialogComponent } from './domain/medical-center/edit-medical-center/edit-medical-center-dialog/edit-medical-center-dialog.component';
@@ -35,6 +37,9 @@ import { DiseaseComponent } from './domain/disease/disease.component';
 import { CreateDiseaseDialogComponent } from './domain/disease/create-disease/create-disease-dialog/create-disease-dialog.component';
 import { EditDiseaseDialogComponent } from './domain/disease/edit-disease/edit-disease-dialog/edit-disease-dialog.component';
 
+import { PatientComponent } from './domain/patient/patient.component';
+import { CreatePatientDialogComponent } from './domain/patient/create-patient/create-patient-dialog/create-patient-dialog.component';
+import { EditPatientDialogComponent } from './domain/patient/edit-patient/edit-patient-dialog/edit-patient-dialog.component';
 
 @NgModule({
     declarations: [
@@ -60,10 +65,14 @@ import { EditDiseaseDialogComponent } from './domain/disease/edit-disease/edit-d
 
         DiseaseComponent,
         CreateDiseaseDialogComponent,
-        EditDiseaseDialogComponent
+        EditDiseaseDialogComponent,
+
+        PatientComponent,
+        CreatePatientDialogComponent,
+        EditPatientDialogComponent
     ],
     imports: [
-AppRoutingModule,
+        AppRoutingModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -77,6 +86,8 @@ AppRoutingModule,
         NgxPaginationModule,
         SharedModule
     ],
-    providers: []
+    providers: [
+        DatePipe,
+    ]
 })
-export class AppModule {}
+export class AppModule { }

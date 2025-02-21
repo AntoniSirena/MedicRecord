@@ -33,4 +33,10 @@ public static class PermissionNames
     public const string Pages_Diseases_Update = "Pages.Diseases.Update";
     public const string Pages_Diseases_Delete = "Pages.Diseases.Delete";
 
+    public const string Pages_Patients = "Pages.Patients";
+    public const string Pages_Patients_GetAll = "Pages.Patients.GetAll";
+    public const string Pages_Patients_Create = "Pages.Patients.Create";
+    public const string Pages_Patients_Update = "Pages.Patients.Update";
+    public const string Pages_Patients_Delete = "Pages.Patients.Delete";
+
 }

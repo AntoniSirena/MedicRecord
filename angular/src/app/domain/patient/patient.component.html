@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-6">
-            <h1>{{ "Diseases" | localize }}</h1>
+            <h1>{{ "Patients" | localize }}</h1>
           </div>
           <div class="col-6 text-right">
             <a href="javascript:;" class="btn bg-blue" (click)="create()">
@@ -56,17 +56,25 @@
               >
                 <ng-template pTemplate="header">
                   <tr>
-                    <th style="min-width: 150px" pSortableColumn="code">
-                        {{ "Code" | localize }}
-                        <p-sortIcon field="code"></p-sortIcon>
+                    <th style="min-width: 150px" pSortableColumn="recordNumber">
+                        {{ "RecordNumber" | localize }}
+                        <p-sortIcon field="recordNumber"></p-sortIcon>
                     </th>
-                    <th style="min-width: 150px" pSortableColumn="name">
-                      {{ "Name" | localize }}
-                      <p-sortIcon field="name"></p-sortIcon>
+                    <th style="min-width: 150px" pSortableColumn="firstName">
+                      {{ "FirstName" | localize }}
+                      <p-sortIcon field="firstName"></p-sortIcon>
                     </th>
-                    <th style="min-width: 150px" pSortableColumn="description">
-                        {{ "Description" | localize }}
-                        <p-sortIcon field="description"></p-sortIcon>
+                    <th style="min-width: 150px" pSortableColumn="secondName">
+                        {{ "SecondName" | localize }}
+                        <p-sortIcon field="secondName"></p-sortIcon>
+                    </th>
+                    <th style="min-width: 150px" pSortableColumn="firstSurname">
+                        {{ "FirstSurname" | localize }}
+                        <p-sortIcon field="firstSurname"></p-sortIcon>
+                    </th>
+                    <th style="min-width: 150px" pSortableColumn="secondSurname">
+                        {{ "SecondSurname" | localize }}
+                        <p-sortIcon field="secondSurname"></p-sortIcon>
                     </th>
                     <th style="min-width: 150px">
                         {{ "IsActive" | localize }}
@@ -80,21 +88,33 @@
                 <ng-template pTemplate="body" let-record="$implicit">
                   <tr>
                     <td>
-                      <span class="p-column-title">{{ "Code" | localize }}</span>
+                      <span class="p-column-title">{{ "RecordNumber" | localize }}</span>
                       <span>
-                        {{ record.code }}
+                        {{ record.recordNumber }}
                       </span>
                     </td>
                     <td>
-                        <span class="p-column-title">{{ "Name" | localize }}</span>
+                        <span class="p-column-title">{{ "FirstName" | localize }}</span>
                         <span>
-                          {{ record.name }}
+                          {{ record.firstName }}
                         </span>
                       </td>
                     <td>
-                        <span class="p-column-title">{{ "Description" | localize }}</span>
+                        <span class="p-column-title">{{ "SecondName" | localize }}</span>
                         <span>
-                          {{ record.description }}
+                          {{ record.secondName }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="p-column-title">{{ "FirstSurname" | localize }}</span>
+                        <span>
+                          {{ record.firstSurname }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="p-column-title">{{ "SecondSurname" | localize }}</span>
+                        <span>
+                          {{ record.secondSurname }}
                         </span>
                     </td>
                     <td>
@@ -172,4 +192,3 @@
       </div>
     </section>
 </div>
-  

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { MedicalCenterComponent } from './domain/medical-center/medical-center.component';
 import { SymptomComponent } from './domain/symptom/symptom.component';
 import { DiseaseComponent } from './domain/disease/disease.component';
+import { PatientComponent } from './domain/patient/patient.component';
 
 @NgModule({
     imports: [
@@ -62,6 +63,12 @@ import { DiseaseComponent } from './domain/disease/disease.component';
                         path: 'diseases', 
                         component: DiseaseComponent,
                         data: { permission: 'Pages.Diseases' }, 
+                        canActivate: [AppRouteGuard] 
+                    },
+                    { 
+                        path: 'patients', 
+                        component: PatientComponent,
+                        data: { permission: 'Pages.Patients' }, 
                         canActivate: [AppRouteGuard] 
                     },
                 ]
