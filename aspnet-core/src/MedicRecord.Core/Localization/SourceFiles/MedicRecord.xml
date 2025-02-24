@@ -124,6 +124,7 @@
 		<text name="System">System</text>
 		
 		<text name="MedicalCenters">Medical centers</text>
+		<text name="MedicalCenter">Medical center</text>
 		<text name="MedicalCentersGetAll">Get all medical centers</text>
 		<text name="MedicalCentersCreate"> Create medical centers</text>
 		<text name="MedicalCentersUpdate">Update medical centers</text>
@@ -178,6 +179,11 @@
 		<text name="Weight">Weight</text>
 		<text name="HeadCircumference">Head circumference</text>
 		<text name="BloodType">Blood type</text>
+
+
+		<text name="PatienData">Patien data</text>
+		<text name="MotherData">Mother data</text>
+		<text name="FatherData">Father data</text>
 		
 	</texts>
 </localizationDictionary>

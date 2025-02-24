@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace MedicRecord.Services.Patient
 {
-     interface IPatientAppService : IAsyncCrudAppService<PatientDto, int, PagedPatientResultPatientDto>
+    interface IPatientAppService : IAsyncCrudAppService<PatientDto, int, PagedPatientResultPatientDto>
     {
+        List<ListDto> GetBloodTypes();
+        List<ListDto> GetMedicalCenters();
     }
 }

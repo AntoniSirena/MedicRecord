@@ -1,6 +1,4 @@
 ﻿using Abp.Application.Services;
-using MedicRecord.Services.Disease.Dto;
-using MedicRecord.Services.Disease;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +8,24 @@ using MedicRecord.Services.Patient.Dto;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using Abp.Collections.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using MedicRecord.Domain;
 
 namespace MedicRecord.Services.Patient
 {
     public class PatientAppService : AsyncCrudAppService<Domain.Patient, PatientDto, int, PagedPatientResultPatientDto>, IPatientAppService
     {
         private readonly IAbpSession _session;
-        public PatientAppService(IRepository<Domain.Patient, int> repository, IAbpSession session) : base(repository)
+        private readonly IRepository<BloodType> bloodTypeRepository;
+        private readonly IRepository<Domain.MedicalCenter> medicalCenterRepository;
+        public PatientAppService(IRepository<Domain.Patient, int> repository, IAbpSession session,
+            IRepository<BloodType> _bloodTypeRepository, IRepository<Domain.MedicalCenter> _medicalCenterRepository
+            ) : base(repository)
         {
             _session = session;
+            bloodTypeRepository = _bloodTypeRepository;
+            medicalCenterRepository = _medicalCenterRepository;
+            
         }
 
         public override Task<PatientDto> CreateAsync(PatientDto input)
@@ -28,6 +35,33 @@ namespace MedicRecord.Services.Patient
             input.TenantId = _session.TenantId;
             input.IsActive = true;
             return base.CreateAsync(input);
+        }
+
+
+        [HttpGet]
+        public List<ListDto> GetBloodTypes()
+        {
+            var result = bloodTypeRepository.GetAllList(x => x.IsDeleted == false).Select(y => new ListDto() 
+            { 
+                Id = y.Id,
+                Code = y.Code,
+                Name = y.Name,
+            }).ToList();
+
+            return result;
+        }
+
+        [HttpGet]
+        public List<ListDto> GetMedicalCenters()
+        {
+            var result = medicalCenterRepository.GetAllList(x => x.IsDeleted == false).Select(y => new ListDto()
+            {
+                Id = y.Id,
+                Code = "",
+                Name = y.Name,
+            }).ToList();
+
+            return result;
         }
 
         public override Task<PatientDto> UpdateAsync(PatientDto input)

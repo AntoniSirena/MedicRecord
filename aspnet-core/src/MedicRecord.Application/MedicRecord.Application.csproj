@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>1.0.0.0</VersionPrefix>
     <TargetFramework>net9.0</TargetFramework>
@@ -13,5 +13,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicRecord.Core\MedicRecord.Core.csproj" />
+    <ProjectReference Include="..\MedicRecord.EntityFrameworkCore\MedicRecord.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

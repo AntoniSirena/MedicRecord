@@ -120,6 +120,7 @@
 		<text name="System">Sistema</text>
 
 		<text name="MedicalCenters">Centros médicos</text>
+		<text name="MedicalCenter">Centro médico</text>
 		<text name="MedicalCentersGetAll">Ver centros médicos</text>
 		<text name="MedicalCentersCreate"> Crear centros médicos</text>
 		<text name="MedicalCentersUpdate">Actualizar centros médicos</text>
@@ -168,12 +169,16 @@
 		<text name="MotherSurnames">Apellidos maternos</text>
 		<text name="FatherNames">Nombres paternos</text>
 		<text name="FatherSurnames">Apellidos paternos</text>
-		<text name="MotherIDNumber">Número de cedula/pasaporte materno</text>
+		<text name="MotherIDNumber">Cedula ó Pasaporte materno</text>
 		<text name="BirthDate">Fecha de nacimiento</text>
 		<text name="Size">Tamaño</text>
 		<text name="Weight">Peso</text>
 		<text name="HeadCircumference">Tamaño cefalico</text>
 		<text name="BloodType">Tipo de sangre</text>
+
+		<text name="PatienData">Datos del paciente</text>
+		<text name="MotherData">Datos de la madre</text>
+		<text name="FatherData">Datos del padre</text>
 		
 	</texts>
 </localizationDictionary>

@@ -114,14 +114,14 @@ export class PatientComponent extends PagedListingComponentBase<PatientDto> {
       createOrEditDialog = this.modalService.show(
         CreatePatientDialogComponent,
         {
-          class: "modal-lg",
+          class: "modal-xl",
         }
       );
     } else {
       createOrEditDialog = this.modalService.show(
         EditPatientDialogComponent,
         {
-          class: "modal-lg",
+          class: "modal-xl",
           initialState: {
             id: id,
           },

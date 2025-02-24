@@ -4,6 +4,7 @@ import { PatientDto } from '@shared/models/patient-model';
 import { PatientService } from '@shared/services/patient.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
+import { ListDropdownDto } from '@shared/models/shared-model';
 
 
 @Component({
@@ -18,6 +19,9 @@ export class EditPatientDialogComponent extends AppComponentBase implements OnIn
   id: number;
 
   @Output() onSave = new EventEmitter<any>();
+
+    bloodTypes: ListDropdownDto[] = [];
+    medicalCenters: ListDropdownDto[] = [];
 
   constructor(
     injector: Injector,
@@ -35,12 +39,12 @@ export class EditPatientDialogComponent extends AppComponentBase implements OnIn
       this.patient = result;
       this.patient.birthDate = this.datePipe.transform(this.patient.birthDate, 'yyyy-MM-dd');
       this.cd.detectChanges();
+      this.getBloodTypes();
+      this.getMedicalCenters();
     });
   }
 
   save(): void {
-    this.patient.medicalCenterId = 1;
-    this.patient.bloodTypeId = 3;
     this.saving = true;
 
     this.patientService.update(this.patient).subscribe(
@@ -54,6 +58,28 @@ export class EditPatientDialogComponent extends AppComponentBase implements OnIn
       }
     );
 
+  }
+
+  getBloodTypes() {
+    this.patientService.getBloodTypes().subscribe(
+      (resp: any) => {
+        this.bloodTypes = resp.result;
+      },
+      () => {
+
+      }
+    );
+  }
+
+  getMedicalCenters() {
+    this.patientService.getMedicalCenters().subscribe(
+      (resp: any) => {
+        this.medicalCenters = resp.result;
+      },
+      () => {
+
+      }
+    );
   }
   
 
