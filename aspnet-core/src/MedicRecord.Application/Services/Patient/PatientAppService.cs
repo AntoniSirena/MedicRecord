@@ -37,33 +37,6 @@ namespace MedicRecord.Services.Patient
             return base.CreateAsync(input);
         }
 
-
-        [HttpGet]
-        public List<ListDto> GetBloodTypes()
-        {
-            var result = bloodTypeRepository.GetAllList(x => x.IsDeleted == false).Select(y => new ListDto() 
-            { 
-                Id = y.Id,
-                Code = y.Code,
-                Name = y.Name,
-            }).ToList();
-
-            return result;
-        }
-
-        [HttpGet]
-        public List<ListDto> GetMedicalCenters()
-        {
-            var result = medicalCenterRepository.GetAllList(x => x.IsDeleted == false).Select(y => new ListDto()
-            {
-                Id = y.Id,
-                Code = "",
-                Name = y.Name,
-            }).ToList();
-
-            return result;
-        }
-
         public override Task<PatientDto> UpdateAsync(PatientDto input)
         {
             input.LastModificationTime = DateTime.UtcNow;
@@ -87,6 +60,21 @@ namespace MedicRecord.Services.Patient
             {
                 return Repository.GetAll();
             }
+        }
+
+
+        [HttpPost]
+        public async Task<CommonComboBoxOutputDto> GetComboBoxes()
+        {
+            CommonComboBoxOutputDto output = new CommonComboBoxOutputDto();
+
+            var bloodTypes = bloodTypeRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
+            var medicalCenters = medicalCenterRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
+
+            output.BloodTypes = bloodTypes.Select(x => new ComboboxItemDto { Id = x.Id, DisplayText = x.Name }).ToList();
+            output.MedicalCenters = medicalCenters.Select(x => new ComboboxItemDto { Id = x.Id, DisplayText = x.Name }).ToList();
+
+            return await Task.Run(() => output);
         }
 
     }

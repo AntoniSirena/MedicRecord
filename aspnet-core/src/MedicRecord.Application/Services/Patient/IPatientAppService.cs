@@ -10,7 +10,6 @@ namespace MedicRecord.Services.Patient
 {
     interface IPatientAppService : IAsyncCrudAppService<PatientDto, int, PagedPatientResultPatientDto>
     {
-        List<ListDto> GetBloodTypes();
-        List<ListDto> GetMedicalCenters();
+        Task<CommonComboBoxOutputDto> GetComboBoxes();
     }
 }
