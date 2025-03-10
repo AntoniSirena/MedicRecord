@@ -2,9 +2,8 @@ import { ChangeDetectorRef, Component, EventEmitter, Injector, OnInit, Output } 
 import { AppComponentBase } from '@shared/app-component-base';
 import { PatientDto } from '@shared/models/patient-model';
 import { PatientService } from '@shared/services/patient.service';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ListDropdownDto } from './../../../../../shared/models/shared-model';
-
+import { CommonComboBoxOutputDto, CommonLookupComboBoxService } from '@shared/services/common-lookup-comboBox.service';
+import { BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'app-create-patient-dialog',
@@ -18,23 +17,22 @@ export class CreatePatientDialogComponent extends AppComponentBase implements On
 
   @Output() onSave = new EventEmitter<any>();
 
-  bloodTypes: ListDropdownDto[] = [];
-  medicalCenters: ListDropdownDto[] = [];
+  comboBoxes = new CommonComboBoxOutputDto();
 
   constructor(
     injector: Injector,
     public patientService: PatientService,
     public bsModalRef: BsModalRef,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private commonLookupComboBoxService: CommonLookupComboBoxService,
   ) {
     super(injector);
   }
 
   async ngOnInit(): Promise<void> {
     this.patient.isActive = true;
+    this.getCommonComboboxs();
     this.cd.detectChanges();
-    this.getBloodTypes();
-    this.getMedicalCenters();
   }
 
   save(): void {
@@ -52,26 +50,10 @@ export class CreatePatientDialogComponent extends AppComponentBase implements On
     );
   }
 
-  getBloodTypes() {
-    this.patientService.getBloodTypes().subscribe(
-      (resp: any) => {
-        this.bloodTypes = resp.result;
-      },
-      () => {
-
-      }
-    );
+  getCommonComboboxs() {
+    this.commonLookupComboBoxService.getComboBoxes().subscribe((resp: CommonComboBoxOutputDto) => {
+      this.comboBoxes = resp;
+      this.cd.detectChanges();
+    });
   }
-
-  getMedicalCenters() {
-    this.patientService.getMedicalCenters().subscribe(
-      (resp: any) => {
-        this.medicalCenters = resp.result;
-      },
-      () => {
-
-      }
-    );
-  }
-
 }

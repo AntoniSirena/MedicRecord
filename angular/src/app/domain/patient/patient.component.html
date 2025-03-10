@@ -76,12 +76,14 @@
                         {{ "SecondSurname" | localize }}
                         <p-sortIcon field="secondSurname"></p-sortIcon>
                     </th>
-                    <th style="min-width: 150px">
-                        {{ "IsActive" | localize }}
-                    </th>
-                    <th style="min-width: 130px">
-                      {{ "Actions" | localize }}
-                    </th>
+                    <th style="min-width: 150px" pSortableColumn="motherNames">
+                      {{ "MotherNames" | localize }}
+                      <p-sortIcon field="motherNames"></p-sortIcon>
+                  </th>
+
+                  <th style="min-width: 130px">
+                    {{ "Actions" | localize }}
+                  </th>
                   </tr>
                 </ng-template>
   
@@ -118,15 +120,10 @@
                         </span>
                     </td>
                     <td>
-                        <div class="custom-control custom-checkbox">
-                          <input
-                            type="checkbox"
-                            class="custom-control-input"
-                            disabled
-                            [checked]="record.isActive"
-                          />
-                          <label class="custom-control-label"></label>
-                        </div>
+                      <span class="p-column-title">{{ "MotherNames" | localize }}</span>
+                      <span>
+                        {{ record.motherNames }} {{ record.motherSurnames }}
+                      </span>
                     </td>
                     <td>
                       <button

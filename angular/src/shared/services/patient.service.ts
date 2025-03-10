@@ -312,39 +312,4 @@ export class PatientService {
         return _observableOf(null as any);
     }
 
-
-    getBloodTypes(): Observable<any> {
-        let url = this.baseUrl + "/api/services/app/Patient/GetBloodTypes";
-
-        let options: any = {
-            headers: new HttpHeaders({
-                "Accept": "text/plain"
-            })
-        };
-
-        return this.http.get(url, options).pipe(
-            catchError((error) => {
-                console.error(Error, error);
-                throw error;
-            })
-        );
-    }
-
-    getMedicalCenters(): Observable<any> {
-        let url = this.baseUrl + "/api/services/app/Patient/GetMedicalCenters";
-
-        let options: any = {
-            headers: new HttpHeaders({
-                "Accept": "text/plain"
-            })
-        };
-
-        return this.http.get(url, options).pipe(
-            catchError((error) => {
-                console.error(Error, error);
-                throw error;
-            })
-        );
-    }
-
 }

@@ -4,7 +4,7 @@ import { PatientDto } from '@shared/models/patient-model';
 import { PatientService } from '@shared/services/patient.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
-import { ListDropdownDto } from '@shared/models/shared-model';
+import { CommonComboBoxOutputDto, CommonLookupComboBoxService } from '@shared/services/common-lookup-comboBox.service';
 
 
 @Component({
@@ -20,15 +20,15 @@ export class EditPatientDialogComponent extends AppComponentBase implements OnIn
 
   @Output() onSave = new EventEmitter<any>();
 
-    bloodTypes: ListDropdownDto[] = [];
-    medicalCenters: ListDropdownDto[] = [];
+  comboBoxes = new CommonComboBoxOutputDto();
 
   constructor(
     injector: Injector,
     public patientService: PatientService,
     public bsModalRef: BsModalRef,
     private cd: ChangeDetectorRef,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private commonLookupComboBoxService: CommonLookupComboBoxService,
   ) {
     super(injector);
   }
@@ -38,9 +38,8 @@ export class EditPatientDialogComponent extends AppComponentBase implements OnIn
     this.patientService.get(this.id).subscribe((result: PatientDto) => {
       this.patient = result;
       this.patient.birthDate = this.datePipe.transform(this.patient.birthDate, 'yyyy-MM-dd');
+      this.getCommonComboboxs();
       this.cd.detectChanges();
-      this.getBloodTypes();
-      this.getMedicalCenters();
     });
   }
 
@@ -59,28 +58,12 @@ export class EditPatientDialogComponent extends AppComponentBase implements OnIn
     );
 
   }
-
-  getBloodTypes() {
-    this.patientService.getBloodTypes().subscribe(
-      (resp: any) => {
-        this.bloodTypes = resp.result;
-      },
-      () => {
-
-      }
-    );
-  }
-
-  getMedicalCenters() {
-    this.patientService.getMedicalCenters().subscribe(
-      (resp: any) => {
-        this.medicalCenters = resp.result;
-      },
-      () => {
-
-      }
-    );
-  }
   
+  getCommonComboboxs() {
+    this.commonLookupComboBoxService.getComboBoxes().subscribe((resp: CommonComboBoxOutputDto) => {
+      this.comboBoxes = resp;
+      this.cd.detectChanges();
+    });
+  }
 
 }

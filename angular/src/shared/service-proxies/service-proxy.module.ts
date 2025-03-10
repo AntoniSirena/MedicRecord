@@ -7,6 +7,7 @@ import { MedicalCenterService } from './../services/medical-center.service';
 import { SymptomService } from './../services/symptom.service';
 import { DiseaseService } from '../services/disease.service';
 import { PatientService } from '../services/patient.service';
+import { CommonLookupComboBoxService } from './../services/common-lookup-comboBox.service';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PatientService } from '../services/patient.service';
         SymptomService,
         DiseaseService,
         PatientService,
+        CommonLookupComboBoxService,
 
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]

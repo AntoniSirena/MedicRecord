@@ -1,15 +1,15 @@
 ﻿using Abp.Application.Services;
 using MedicRecord.Services.CommonComboBox.Dto;
-using MedicRecord.Services.Patient.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicRecord.Services.Patient
+namespace MedicRecord.Services.CommonComboBox
 {
-    interface IPatientAppService : IAsyncCrudAppService<PatientDto, int, PagedPatientResultPatientDto>
+    interface ICommonComboBoxAppService: IApplicationService
     {
+        Task<CommonComboBoxOutputDto> GetComboBoxes();
     }
 }

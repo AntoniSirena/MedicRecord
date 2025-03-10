@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicRecord.Services
+namespace MedicRecord.Services.CommonComboBox.Dto
 {
     /// <summary>
     /// Clase Modelo para los DTO's
@@ -21,10 +21,5 @@ namespace MedicRecord.Services
         /// Display text of the item.
         /// </summary>
         public string DisplayText { get; set; }
-
-        /// <summary>
-        /// Is selected?
-        /// </summary>
-        public bool IsSelected { get; set; }
     }
 }

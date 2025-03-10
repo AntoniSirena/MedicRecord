@@ -174,15 +174,14 @@
 
     <div class="row">
       <div class="col-md-6">
-        {{bloodTypes | json }}
         <div class="form-group row">
           <label class="col-md-4 col-form-label" for="bloodTypeId">
             {{ "BloodType" | localize }}
           </label>
           <div class="col-md-8">
             <select name="bloodType" class="form-control" [(ngModel)]="patient.bloodTypeId">
-              <option *ngFor="let item of bloodTypes async" value={{item.id}}>
-                {{item.name}}
+              <option *ngFor="let item of comboBoxes?.bloodTypes" value={{item?.id}}>
+                {{item.displayText}}
               </option>
             </select>
           </div>
@@ -190,15 +189,14 @@
       </div>
       
       <div class="col-md-6">
-        {{medicalCenters | json}}
         <div class="form-group row">
           <label class="col-md-4 col-form-label" for="medicalCenterId">
             {{ "MedicalCenter" | localize }}
           </label>
           <div class="col-md-8">
             <select name="medicalCenter" class="form-control" [(ngModel)]="patient.medicalCenterId">
-              <option *ngFor="let item of medicalCenters" value={{item.id}}>
-                {{item.name}}
+              <option *ngFor="let item of comboBoxes?.medicalCenters" value={{item?.id}}>
+                {{item.displayText}}
               </option>
             </select>
           </div>
