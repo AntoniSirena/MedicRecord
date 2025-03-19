@@ -12,14 +12,8 @@ namespace MedicRecord.Services.CommonComboBox.Dto
     [Serializable]
     public class ComboboxItemDto
     {
-        /// <summary>
-        /// Value of the item.
-        /// </summary>
         public int Id { get; set; }
-
-        /// <summary>
-        /// Display text of the item.
-        /// </summary>
+        public string Code { get; set; }
         public string DisplayText { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicRecord.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,15 @@ namespace MedicRecord.Services.CommonComboBox.Dto
         {
             BloodTypes = new List<ComboboxItemDto>();
             MedicalCenters = new List<ComboboxItemDto>();
+            StateMedicalConsults = new List<ComboboxItemDto>();
+            MedicalAges = new List<ComboboxItemDto>();
         }
         /// <summary>
         /// 
         /// </summary>
         public List<ComboboxItemDto> BloodTypes { get; set; }
         public List<ComboboxItemDto> MedicalCenters { get; set; }
+        public List<ComboboxItemDto> StateMedicalConsults { get; set; }
+        public List<ComboboxItemDto> MedicalAges { get; set; }
     }
 }

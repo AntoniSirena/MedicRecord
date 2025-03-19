@@ -76,7 +76,9 @@ protected processGetComboBoxes(response: HttpResponseBase): Observable<CommonCom
 export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {    
     bloodTypes: ComboboxItemDto[];
     medicalCenters: ComboboxItemDto[];
-    
+    stateMedicalConsults: ComboboxItemDto[];
+    medicalAges: ComboboxItemDto[];
+
     constructor(data?: ICommonComboBoxOutputDto) {
         if (data) {
             for (var property in data) {
@@ -90,6 +92,8 @@ export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {
            
             this.bloodTypes = _data["bloodTypes"];
             this.medicalCenters = _data["medicalCenters"];
+            this.stateMedicalConsults = _data["stateMedicalConsults"];
+            this.medicalAges = _data["medicalAges"];
         }
     }
 
@@ -103,8 +107,8 @@ export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};        
       
-        data["bloodTypes"] = this.bloodTypes;
-        data["medicalCenters"] = this.medicalCenters;
+        data["stateMedicalConsults"] = this.stateMedicalConsults;
+        data["medicalAges"] = this.medicalAges;
        
         return data;
     }
@@ -120,9 +124,12 @@ export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {
 export interface ICommonComboBoxOutputDto {   
     bloodTypes: ComboboxItemDto[];
     medicalCenters: ComboboxItemDto[];
+    stateMedicalConsults: ComboboxItemDto[];
+    medicalAges: ComboboxItemDto[];
 }
 export interface ComboboxItemDto{
     id:number;
+    code: string;
     displayText: string;
 }
 

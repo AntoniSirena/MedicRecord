@@ -13,12 +13,13 @@ namespace MedicRecord.Domain
     {
         public int PatientId { get; set; }
         public int? MedicalAgeId { get; set; }
+        public int? StateId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? NextDate { get; set; }
-        public decimal Size { get; set; }
-        public decimal Weight { get; set; }
-        public decimal HeadCircumference { get; set; }
+        public decimal? Size { get; set; }
+        public decimal? Weight { get; set; }
+        public decimal? HeadCircumference { get; set; }
         public bool IsActive { get; set; }
         public int? TenantId { get; set; }
         public string Note { get; set; }
@@ -30,5 +31,8 @@ namespace MedicRecord.Domain
 
         [ForeignKey("MedicalAgeId")]
         public virtual MedicalAge MedicalAge { get; set; }
+
+        [ForeignKey("StateId")]
+        public virtual StateMedicalConsult StateMedicalConsult { get; set; }
     }
 }
