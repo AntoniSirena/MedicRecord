@@ -17,7 +17,11 @@ public class MedicRecordDbContext : AbpZeroDbContext<Tenant, Role, User, MedicRe
     public DbSet<Disease> Diseases { get; set; }
     public DbSet<BloodType> BloodTypes { get; set; }
     public DbSet<Patient> Patients { get; set; }
-
+    public DbSet<StateMedicalConsult> StateMedicalConsults { get; set; }
+    public DbSet<MedicalAge> MedicalAges { get; set; }
+    public DbSet<MedicalConsultDisease> medicalConsultDiseases { get; set; }
+    public DbSet<MedicalConsultSymptom> MedicalConsultSymptoms { get; set; }
+    public DbSet<MedicalConsult> MedicalConsults { get; set; }
     public MedicRecordDbContext(DbContextOptions<MedicRecordDbContext> options)
         : base(options)
     {
