@@ -33,7 +33,12 @@ namespace MedicRecord.Services.MedicalConsult
         {
             var state = _stateMedicalConsultRepository.GetAll().Where(x => x.Code == GlobalConfiguration.StateMedicalConsult.Open).FirstOrDefault();
 
+            var consults = Repository.GetAll().Where(x => x.PatientId == input.PatientId && x.StateId == state.Id && x.IsActive == true && x.IsDeleted == false).ToList();
 
+            if (consults.Count > 0)
+            {
+
+            }
 
             input.CreationTime = DateTime.UtcNow;
             input.CreatorUserId = _session.UserId;

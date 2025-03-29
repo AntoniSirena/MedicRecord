@@ -9,6 +9,8 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { ActivatedRoute } from '@node_modules/@angular/router';
 import { LazyLoadEvent } from '@node_modules/primeng/api';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
+import { CreateMedicalConsultComponent } from './create-medical-consult/create-medical-consult.component';
+import { EditMedicalConsultComponent } from './edit-medical-consult/edit-medical-consult.component';
 
 @Component({
   selector: 'app-medical-consult',
@@ -98,11 +100,36 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
   }
 
   create(): void {
-    //this.showCreateOrEditDialog();
+    this.showCreateOrEditDialog();
   }
 
   edit(input: MedicalConsultDto): void {
-    console.log(input);
-    //this.showCreateOrEditDialog(input.id);
+    this.showCreateOrEditDialog(input.id);
+  }
+
+  showCreateOrEditDialog(id?: number): void {
+    let createOrEditDialog: BsModalRef;
+    if (!id) {
+      createOrEditDialog = this._modalService.show(
+        CreateMedicalConsultComponent,
+        {
+          class: "modal-lg",
+        }
+      );
+    } else {
+      createOrEditDialog = this._modalService.show(
+        EditMedicalConsultComponent,
+        {
+          class: "modal-lg",
+          initialState: {
+            id: id,
+          },
+        }
+      );
+    }
+
+    createOrEditDialog.content.onSave.subscribe(() => {
+      this.refresh();
+    });
   }
 }

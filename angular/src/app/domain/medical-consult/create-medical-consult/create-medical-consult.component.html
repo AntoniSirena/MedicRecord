@@ -1,0 +1,77 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'NewConsult' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="patientId">
+              {{ "SelectPatient" | localize }}
+            </label>
+            <div class="col-md-8">
+              <select 
+                name="patientId" 
+                class="form-control" 
+                [(ngModel)]="consult.patientId" 
+                required
+                #patientModel="ngModel"
+                #patientEl
+                >
+                <option *ngFor="let item of comboBoxes.patients" [value]="item.id">
+                  {{item.displayText}}
+                </option>
+              </select>
+
+              <abp-validation-summary
+              [control]="patientModel"
+              [controlEl]="patientEl"
+              ></abp-validation-summary>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="reasonConsult">
+              {{ "ReasonConsult" | localize }}
+            </label>
+            <div class="col-md-8">
+                <textarea
+                    rows="2"
+                    class="form-control"
+                    name="reasonConsult"
+                    id="reasonConsult"
+                    minlength="1"
+                    maxlength="100"
+                    required
+                    [(ngModel)]="consult.reasonConsult"
+                    #reasonConsultModel="ngModel"
+                    #reasonConsultEl
+                ></textarea>
+
+                <abp-validation-summary
+                [control]="reasonConsultModel"
+                [controlEl]="reasonConsultEl"
+                ></abp-validation-summary>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

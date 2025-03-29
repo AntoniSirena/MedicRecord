@@ -181,7 +181,7 @@
 		<text name="FatherData">Datos del padre</text>
 
 		<text name="Note">Notas/Observaciones</text>
-		<text name="ReasonConsult">Reson de consulta</text>
+		<text name="ReasonConsult">Rason de consulta</text>
 		<text name="StartDate">Fecha de inicio</text>
 		<text name="EndDate">Fecha de cierre</text>
 		<text name="NextDate">Fecha futura</text>
@@ -197,7 +197,8 @@
 		<text name="State">Estado</text>
 		<text name="NewConsult">Nueva consulta</text>
 		<text name="Process">Procesar</text>
-		
-		
+		<text name="SelectPatient">Seleccione el paciente</text>
+
+
 	</texts>
 </localizationDictionary>

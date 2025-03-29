@@ -202,7 +202,8 @@
 		<text name="State">State</text>
 		<text name="NewConsult">New consult</text>
 		<text name="Process">Process</text>
-		
-		
+		<text name="SelectPatient">Select patient</text>
+
+
 	</texts>
 </localizationDictionary>

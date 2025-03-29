@@ -15,13 +15,15 @@ namespace MedicRecord.Services.CommonComboBox
         private readonly IRepository<Domain.MedicalCenter> medicalCenterRepository;
         private readonly IRepository<StateMedicalConsult> stateMedicalConsultRepository;
         private readonly IRepository<MedicalAge> medicalAgeRepository;
+        private readonly IRepository<Domain.Patient> patientRepository;
 
         public CommonComboBoxAppService(
             IAbpSession session,
             IRepository<BloodType> _bloodTypeRepository,
             IRepository<Domain.MedicalCenter> _medicalCenterRepository,
             IRepository<StateMedicalConsult> _stateMedicalConsultRepository,
-            IRepository<MedicalAge> _medicalAgeRepository
+            IRepository<MedicalAge> _medicalAgeRepository,
+            IRepository<Domain.Patient> _patientRepository
             )
         {
             _session = session;
@@ -29,6 +31,7 @@ namespace MedicRecord.Services.CommonComboBox
             medicalCenterRepository = _medicalCenterRepository;
             stateMedicalConsultRepository = _stateMedicalConsultRepository;
             medicalAgeRepository = _medicalAgeRepository;
+            patientRepository = _patientRepository;
         }
 
         [HttpPost]
@@ -40,12 +43,13 @@ namespace MedicRecord.Services.CommonComboBox
             var medicalCenters = medicalCenterRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
             var stateMedicalConsults = stateMedicalConsultRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
             var medicalAges = medicalAgeRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
+            var patients = patientRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.FirstName);
 
             output.BloodTypes = bloodTypes.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
             output.MedicalCenters = medicalCenters.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Name, DisplayText = x.Name }).ToList();
             output.StateMedicalConsults = stateMedicalConsults.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
             output.MedicalAges = medicalAges.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
-
+            output.Patients = patients.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.RecordNumber, DisplayText = x.FirstName +" "+ x.SecondName + " " +  x.FirstSurname + " " +  x.SecondSurname}).ToList();
 
             return await Task.Run(() => output);
         }

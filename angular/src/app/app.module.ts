@@ -42,6 +42,9 @@ import { CreatePatientDialogComponent } from './domain/patient/create-patient/cr
 import { EditPatientDialogComponent } from './domain/patient/edit-patient/edit-patient-dialog/edit-patient-dialog.component';
 
 import { MedicalConsultComponent } from './domain/medical-consult/medical-consult.component';
+import { CreateMedicalConsultComponent } from './domain/medical-consult/create-medical-consult/create-medical-consult.component';
+import { EditMedicalConsultComponent } from './domain/medical-consult/edit-medical-consult/edit-medical-consult.component';
+
 
 @NgModule({
     declarations: [
@@ -74,9 +77,11 @@ import { MedicalConsultComponent } from './domain/medical-consult/medical-consul
         EditPatientDialogComponent,
 
         MedicalConsultComponent,
+        CreateMedicalConsultComponent,
+        EditMedicalConsultComponent,
     ],
     imports: [
-    AppRoutingModule,
+        AppRoutingModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
