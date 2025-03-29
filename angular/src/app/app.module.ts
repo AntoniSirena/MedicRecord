@@ -41,6 +41,8 @@ import { PatientComponent } from './domain/patient/patient.component';
 import { CreatePatientDialogComponent } from './domain/patient/create-patient/create-patient-dialog/create-patient-dialog.component';
 import { EditPatientDialogComponent } from './domain/patient/edit-patient/edit-patient-dialog/edit-patient-dialog.component';
 
+import { MedicalConsultComponent } from './domain/medical-consult/medical-consult.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -69,10 +71,12 @@ import { EditPatientDialogComponent } from './domain/patient/edit-patient/edit-p
 
         PatientComponent,
         CreatePatientDialogComponent,
-        EditPatientDialogComponent
+        EditPatientDialogComponent,
+
+        MedicalConsultComponent,
     ],
     imports: [
-        AppRoutingModule,
+    AppRoutingModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

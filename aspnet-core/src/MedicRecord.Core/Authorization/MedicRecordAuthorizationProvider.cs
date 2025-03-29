@@ -42,6 +42,14 @@ public class MedicRecordAuthorizationProvider : AuthorizationProvider
         context.CreatePermission(PermissionNames.Pages_Patients_Create, L("PatientsCreate"));
         context.CreatePermission(PermissionNames.Pages_Patients_Update, L("PatientsUpdate"));
         context.CreatePermission(PermissionNames.Pages_Patients_Delete, L("PatientsDelete"));
+
+        context.CreatePermission(PermissionNames.Pages_MedicalConsults, L("MedicalConsults"));
+        context.CreatePermission(PermissionNames.Pages_MedicalConsults_GetAll, L("MedicalConsultsGetAll"));
+        context.CreatePermission(PermissionNames.Pages_MedicalConsults_Create, L("MedicalConsultsCreate"));
+        context.CreatePermission(PermissionNames.Pages_MedicalConsults_Update, L("MedicalConsultsUpdate"));
+        context.CreatePermission(PermissionNames.Pages_MedicalConsults_Delete, L("MedicalConsultsDelete"));
+
+        context.CreatePermission(PermissionNames.Pages_MedicalProcess, L("MedicalProcess"));
     }
 
     private static ILocalizableString L(string name)

@@ -1,15 +1,13 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 using Abp.Domain.Entities;
+using MedicRecord.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicRecord.Domain
+namespace MedicRecord.Services.MedicalConsult.Dto
 {
-    public class MedicalConsult : FullAuditedEntity, IMayHaveTenant
+    [AutoMapFrom(typeof(Domain.MedicalConsult))]
+    public class MedicalConsultDto : FullAuditedEntityDto, IMayHaveTenant
     {
         public int PatientId { get; set; }
         public int? MedicalAgeId { get; set; }
@@ -25,14 +23,8 @@ namespace MedicRecord.Domain
         public string Note { get; set; }
         public string ReasonConsult { get; set; }
 
-
-        [ForeignKey("PatientId")]
-        public virtual Patient Patient { get; set; }
-
-        [ForeignKey("MedicalAgeId")]
-        public virtual MedicalAge MedicalAge { get; set; }
-
-        [ForeignKey("StateId")]
+        public virtual Domain.Patient Patient { get; set; }
         public virtual StateMedicalConsult State { get; set; }
+
     }
 }

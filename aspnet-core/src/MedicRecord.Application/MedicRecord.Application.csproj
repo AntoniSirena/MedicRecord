@@ -12,6 +12,9 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic" Version="1.0.8" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\MedicRecord.Core\MedicRecord.Core.csproj" />
     <ProjectReference Include="..\MedicRecord.EntityFrameworkCore\MedicRecord.EntityFrameworkCore.csproj" />
   </ItemGroup>

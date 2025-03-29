@@ -179,6 +179,25 @@
 		<text name="PatienData">Datos del paciente</text>
 		<text name="MotherData">Datos de la madre</text>
 		<text name="FatherData">Datos del padre</text>
+
+		<text name="Note">Notas/Observaciones</text>
+		<text name="ReasonConsult">Reson de consulta</text>
+		<text name="StartDate">Fecha de inicio</text>
+		<text name="EndDate">Fecha de cierre</text>
+		<text name="NextDate">Fecha futura</text>
+		<text name="MedicalConsults">Consultas médicas</text>
+		<text name="MedicalConsultsGetAll">Ver consultas médicas</text>
+		<text name="MedicalConsultsCreate">Crear consultas médicas</text>
+		<text name="MedicalConsultsUpdate">Editar consultas médicas</text>
+		<text name="MedicalConsultsDelete">Eliminar consultas médicas</text>
+
+		<text name="MedicalProcess">Procesos</text>
+		<text name="Number">Número</text>
+		<text name="Patient">Paciente</text>
+		<text name="State">Estado</text>
+		<text name="NewConsult">Nueva consulta</text>
+		<text name="Process">Procesar</text>
+		
 		
 	</texts>
 </localizationDictionary>

@@ -185,5 +185,24 @@
 		<text name="MotherData">Mother data</text>
 		<text name="FatherData">Father data</text>
 		
+		<text name="Note">Note</text>
+		<text name="ReasonConsult">Reason consult</text>
+		<text name="StartDate">StartDate</text>
+		<text name="EndDate">EndDate</text>
+		<text name="NextDate">NextDate</text>
+		<text name="MedicalConsults">Medical consults</text>
+		<text name="MedicalConsultsGetAll">GetAll medical consults</text>
+		<text name="MedicalConsultsCreate">Create medical consults</text>
+		<text name="MedicalConsultsUpdate">Update medical consults</text>
+		<text name="MedicalConsultsDelete">Delete medical consults</text>
+		
+		<text name="MedicalProcess">Process</text>
+		<text name="Number">Number</text>
+		<text name="Patient">Patient</text>
+		<text name="State">State</text>
+		<text name="NewConsult">New consult</text>
+		<text name="Process">Process</text>
+		
+		
 	</texts>
 </localizationDictionary>
