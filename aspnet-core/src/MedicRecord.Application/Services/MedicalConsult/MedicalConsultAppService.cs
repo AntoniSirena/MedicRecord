@@ -73,18 +73,20 @@ namespace MedicRecord.Services.MedicalConsult
         {
             if (!input.Keyword.IsNullOrEmpty())
             {
-                var result = Repository.GetAllIncluding(x => x.Patient).Include(x => x.State).Where(x => x.Patient.FirstName.Contains(input.Keyword) ||
+                var result = Repository.GetAllIncluding(x => x.Patient).Include(x => x.Patient.MedicalCenter).Include(x => x.State).Where(x => x.Patient.FirstName.Contains(input.Keyword) ||
                 x.Patient.SecondName.Contains(input.Keyword) ||
                 x.Patient.FirstSurname.Contains(input.Keyword) ||
                 x.Patient.SecondSurname.Contains(input.Keyword) ||
-                x.Patient.MotherIDNumber.Contains(input.Keyword)
+                x.Patient.MotherIDNumber.Contains(input.Keyword) ||
+                x.Patient.MedicalCenter.Name.Contains(input.Keyword) ||
+                x.State.Name.Contains(input.Keyword)
                 );
 
                 return result;
             }
             else
             {
-                var result = Repository.GetAllIncluding(x => x.Patient).Include(x => x.State);
+                var result = Repository.GetAllIncluding(x => x.Patient).Include(x => x.Patient.MedicalCenter).Include(x => x.State);
 
                 return result;
             }

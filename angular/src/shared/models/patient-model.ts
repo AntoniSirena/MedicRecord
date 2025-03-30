@@ -1,4 +1,5 @@
 import moment from "moment";
+import { MedicalCenterDto } from "./medical-center-model";
 
 export interface IPatientDto {
     id: number;
@@ -28,8 +29,7 @@ export interface IPatientDto {
     headCircumference: number;
     bloodTypeId: number;
     medicalCenterId: number;
-    bloodType_Name: string;
-    medicalCenter_Name: string;
+    medicalCenter: MedicalCenterDto;
 }
 
 export class PatientDto implements IPatientDto {
@@ -60,8 +60,7 @@ export class PatientDto implements IPatientDto {
     headCircumference: number;
     bloodTypeId: number;
     medicalCenterId: number;
-    bloodType_Name: string;
-    medicalCenter_Name: string;
+    medicalCenter: MedicalCenterDto;
 
     constructor(data?: IPatientDto) {
         if (data) {
@@ -101,8 +100,7 @@ export class PatientDto implements IPatientDto {
             this.headCircumference = _data["headCircumference"];
             this.bloodTypeId = _data["bloodTypeId"];
             this.medicalCenterId = _data["medicalCenterId"];
-            this.bloodType_Name = _data["bloodType_Name"];
-            this.medicalCenter_Name = _data["medicalCenter_Name"];
+            this.medicalCenter = _data["medicalCenter"];
         }
     }
 
@@ -142,6 +140,7 @@ export class PatientDto implements IPatientDto {
         data["headCircumference"] = this.headCircumference;
         data["bloodTypeId"] = this.bloodTypeId;
         data["medicalCenterId"] = this.medicalCenterId;
+        data["medicalCenter"] = this.medicalCenter;
 
         return data;
     }

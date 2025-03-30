@@ -162,6 +162,7 @@
 		<text name="PatientsUpdate">Update patients</text>
 		<text name="PatientsDelete">Delete patients</text>
 		<text name="EditPatients">Edit patients</text>
+		<text name="EditPatient">Edit patient</text>
 		<text name="CreateNewPatient">Cretae new patient</text>
 
 		<text name="RecordNumber">Record number</text>
@@ -203,6 +204,8 @@
 		<text name="NewConsult">New consult</text>
 		<text name="Process">Process</text>
 		<text name="SelectPatient">Select patient</text>
+		<text name="View">View</text>
+		<text name="ViewHitory">View hitory</text>
 
 
 	</texts>

@@ -31,7 +31,7 @@ namespace MedicRecord.Services.Patient.Dto
         public int? TenantId { get; set; }
 
         public int? BloodTypeId { get; set; }
-        public string BloodType_Name { get; set; }
-        public string MedicalCenter_Name { get; set; }
+
+        public virtual Domain.MedicalCenter MedicalCenter { get; set; }
     }
 }

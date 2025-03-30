@@ -44,7 +44,7 @@ namespace MedicRecord.Services.Patient
         {
             if (!input.Keyword.IsNullOrEmpty())
             {
-                return Repository.GetAll().Where(x => x.RecordNumber.Contains(input.Keyword) || x.FirstName.Contains(input.Keyword) ||
+                return Repository.GetAllIncluding(x => x.MedicalCenter).Where(x => x.RecordNumber.Contains(input.Keyword) || x.FirstName.Contains(input.Keyword) ||
                                                                                          x.SecondName.Contains(input.Keyword) ||
                                                                                          x.FirstSurname.Contains(input.Keyword) ||
                                                                                          x.SecondSurname.Contains(input.Keyword) ||
@@ -54,7 +54,7 @@ namespace MedicRecord.Services.Patient
             }
             else
             {
-                return Repository.GetAll();
+                return Repository.GetAllIncluding(x => x.MedicalCenter);
             }
         }
 

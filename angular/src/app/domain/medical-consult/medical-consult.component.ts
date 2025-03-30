@@ -120,7 +120,7 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
       createOrEditDialog = this._modalService.show(
         EditMedicalConsultComponent,
         {
-          class: "modal-lg",
+          class: "modal-xl",
           initialState: {
             id: id,
           },
@@ -131,5 +131,9 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
     createOrEditDialog.content.onSave.subscribe(() => {
       this.refresh();
     });
+  }
+
+  getPatientHistory(id: number){
+   
   }
 }

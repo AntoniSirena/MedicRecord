@@ -60,6 +60,10 @@
                         {{ "Number" | localize }}
                         <p-sortIcon field="number"></p-sortIcon>
                     </th>
+                    <th style="min-width: 150px" pSortableColumn="medicalCenter">
+                      {{ "MedicalCenter" | localize }}
+                      <p-sortIcon field="medicalCenter"></p-sortIcon>
+                    </th>
                     <th style="min-width: 150px" pSortableColumn="patient">
                       {{ "Patient" | localize }}
                       <p-sortIcon field="patient"></p-sortIcon>
@@ -96,8 +100,14 @@
                       </span>
                     </td>
                     <td>
-                      <span class="p-column-title">{{ "Patient" | localize }}</span>
+                      <span class="p-column-title">{{ "MedicalCenter" | localize }}</span>
                       <span>
+                        {{ record.patient.medicalCenter.name }}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="p-column-title">{{ "Patient" | localize }}</span>
+                      <span style="text-decoration: underline;" (click)="getPatientHistory(record.patientId)">
                         {{ record.patient.firstName +" "+ record.patient.secondName +" "+ record.patient.firstSurname +" "+ record.patient.secondSurname }}
                       </span>
                     </td>
@@ -131,9 +141,20 @@
                         type="button"
                         class="btn btn-sm bg-secondary"
                         (click)="edit(record)"
+                        *ngIf="record.state.code == 'Open'"
                       >
                         <i class="fas fa-pencil-alt"></i>
                         {{ "Procesar" | localize }}
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-sm bg-info"
+                        (click)="edit(record)"
+                        *ngIf="record.state.code == 'Closed'"
+                        >
+                        <i class="fas fa-eye"></i>
+                        {{ "ViewHitory" | localize }}
                       </button>
                     </td>
 

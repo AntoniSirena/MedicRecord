@@ -31,7 +31,6 @@ namespace MedicRecord.Domain
         public int? BloodTypeId { get; set; }
         public int? MedicalCenterId { get; set; }
 
-
         [ForeignKey("BloodTypeId")]
         public virtual BloodType BloodType { get; set; }
 
