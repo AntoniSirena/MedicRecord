@@ -158,7 +158,7 @@
 		<text name="PatientsUpdate">Actualizar pacientes</text>
 		<text name="PatientsDelete">Eliminar pacientes</text>
 		<text name="EditPatients">Editar pacientes</text>
-		<text name="EditPatient">Editar patiente</text>
+		<text name="EditPatient">Editar paciente</text>
 		<text name="CreateNewPatient">Crear nuevo paciente</text>
 
 		<text name="RecordNumber">Número de tarjeta</text>
@@ -200,7 +200,10 @@
 		<text name="Process">Procesar</text>
 		<text name="SelectPatient">Seleccione el paciente</text>
 		<text name="View">Ver</text>
-		<text name="ViewHitory">Ver hitorial</text>
-
+		<text name="ViewHitory">Ver historial</text>
+		<text name="PatientOpenConsultation">Paciente ya tiene una consulta abierta</text>
+		<text name="ConsultProcessing">Procesando consulta</text>
+		<text name="Age">Edad</text>
+		
 	</texts>
 </localizationDictionary>

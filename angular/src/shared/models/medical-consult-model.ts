@@ -26,6 +26,7 @@ export interface IMedicalConsultDto {
     tenantId: number | undefined;
     patient: PatientDto;
     state: State;
+    isClosed: boolean;
 }
 
 export class MedicalConsultDto implements IMedicalConsultDto {
@@ -52,6 +53,7 @@ export class MedicalConsultDto implements IMedicalConsultDto {
     tenantId: number | undefined;
     patient: PatientDto;
     state: State;
+    isClosed: boolean;
 
     constructor(data?: IMedicalConsultDto) {
         if (data) {
@@ -87,6 +89,7 @@ export class MedicalConsultDto implements IMedicalConsultDto {
             this.tenantId = _data["tenantId"];
             this.patient = _data["patient"];
             this.state = _data["state"];
+            this.isClosed = _data["isClosed"];
         }
     }
 
@@ -122,6 +125,8 @@ export class MedicalConsultDto implements IMedicalConsultDto {
         data["tenantId"] = this.tenantId;
         data["patient"] = this.patient;
         data["state"] = this.state;
+        data["isClosed"] = this.isClosed;
+        
         return data;
     }
 

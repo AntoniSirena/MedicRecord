@@ -22,6 +22,7 @@ namespace MedicRecord.Services.MedicalConsult.Dto
         public int? TenantId { get; set; }
         public string Note { get; set; }
         public string ReasonConsult { get; set; }
+        public bool IsClosed { get; set; }
 
         public virtual Domain.Patient Patient { get; set; }
         public virtual StateMedicalConsult State { get; set; }

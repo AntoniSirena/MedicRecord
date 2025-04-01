@@ -12,6 +12,7 @@ using Abp.Collections.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
+using Abp.UI;
 
 namespace MedicRecord.Services.MedicalConsult
 {
@@ -37,7 +38,7 @@ namespace MedicRecord.Services.MedicalConsult
 
             if (consults.Count > 0)
             {
-
+               throw new UserFriendlyException("El paciente ya tiene una consulta abierta");
             }
 
             input.CreationTime = DateTime.UtcNow;
@@ -59,6 +60,7 @@ namespace MedicRecord.Services.MedicalConsult
             {
                 input.EndDate = DateTime.UtcNow;
                 input.NextDate = DateTime.UtcNow.AddDays(30);
+                input.IsClosed = true;
             }
 
             input.LastModificationTime = DateTime.UtcNow;

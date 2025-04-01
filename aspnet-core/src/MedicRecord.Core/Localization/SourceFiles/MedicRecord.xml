@@ -206,7 +206,9 @@
 		<text name="SelectPatient">Select patient</text>
 		<text name="View">View</text>
 		<text name="ViewHitory">View hitory</text>
-
+		<text name="PatientOpenConsultation">Patient already has an open consultation</text>
+		<text name="ConsultProcessing">Consult processing</text>
+		<text name="Age">Age</text>
 
 	</texts>
 </localizationDictionary>

@@ -11,6 +11,7 @@ import { LazyLoadEvent } from '@node_modules/primeng/api';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { CreateMedicalConsultComponent } from './create-medical-consult/create-medical-consult.component';
 import { EditMedicalConsultComponent } from './edit-medical-consult/edit-medical-consult.component';
+import { LocalDataService } from './../../../shared/services/local-data.service';
 
 @Component({
   selector: 'app-medical-consult',
@@ -32,6 +33,7 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
     private medicalConsultService: MedicalConsultService,
     private _modalService: BsModalService,
     private _activatedRoute: ActivatedRoute,
+    private localDataService: LocalDataService,
     cd: ChangeDetectorRef
   ) {
     super(injector, cd);
@@ -104,6 +106,8 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
   }
 
   edit(input: MedicalConsultDto): void {
+    this.localDataService.setLastMedicalConsult(input);
+    
     this.showCreateOrEditDialog(input.id);
   }
 

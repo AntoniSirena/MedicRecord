@@ -1,1 +1,171 @@
-<p>edit-medical-consult works!</p>
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'ConsultProcessing' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+
+    <h4 style="color: red; text-decoration: underline;">
+        {{consultFullData.patient.firstName +" "+ consultFullData.patient.secondName +" "+ consultFullData.patient.firstSurname +" "+ consultFullData.patient.secondSurname}}
+    </h4>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="col-md-4 col-form-label" for="medicalAgeId">
+                        {{ "Age" | localize }}
+                    </label>
+                    <select name="medicalAge" class="form-control" [(ngModel)]="consult.medicalAgeId" required #ageModel="ngModel" #ageEl>
+                        <option *ngFor="let item of comboBoxes?.medicalAges" [value]="item.id">
+                          {{item.displayText}}
+                        </option>
+                    </select>
+                    <abp-validation-summary
+                        [control]="ageModel"
+                        [controlEl]="ageEl"
+                    ></abp-validation-summary>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="col-md-4 col-form-label" for="stateId">
+                        {{ "State" | localize }}
+                    </label>
+                    <select name="state" class="form-control" [(ngModel)]="consult.stateId" required #stateModel="ngModel" #stateEl>
+                        <option *ngFor="let item of comboBoxes?.stateMedicalConsults" [value]="item.id">
+                          {{item.displayText}}
+                        </option>
+                    </select>
+                    <abp-validation-summary
+                        [control]="stateModel"
+                        [controlEl]="stateEl"
+                    ></abp-validation-summary>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="col-md-3 col-form-label" for="size">
+                        {{ "Size" | localize }}
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="size"
+                        id="size"
+                        required
+                        minlength="1"
+                        maxlength="64"
+                        [(ngModel)]="consult.size"
+                        #sizeModel="ngModel"
+                        #sizeEl
+                    />
+                    <abp-validation-summary
+                        [control]="sizeModel"
+                        [controlEl]="sizeEl"
+                    ></abp-validation-summary>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="col-md-3 col-form-label" for="weight">
+                        {{ "Weight" | localize }}
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="weight"
+                        id="weight"
+                        required
+                        minlength="1"
+                        maxlength="64"
+                        [(ngModel)]="consult.weight"
+                        #weightModel="ngModel"
+                        #weightEl
+                    />
+                    <abp-validation-summary
+                        [control]="weightModel"
+                        [controlEl]="weightEl"
+                    ></abp-validation-summary>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="col-md-6 col-form-label" for="headCircumference">
+                        {{ "HeadCircumference" | localize }}
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="headCircumference"
+                        id="headCircumference"
+                        required
+                        minlength="1"
+                        maxlength="64"
+                        [(ngModel)]="consult.headCircumference"
+                        #headCircumferenceModel="ngModel"
+                        #headCircumferenceEl
+                    />
+                  
+                    <abp-validation-summary
+                        [control]="headCircumferenceModel"
+                        [controlEl]="headCircumferenceEl"
+                    ></abp-validation-summary>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-12 col-form-label" for="reasonConsult">
+                {{ "ReasonConsult" | localize }}
+            </label>
+            <textarea
+                rows="1"
+                class="form-control"
+                name="reasonConsult"
+                id="reasonConsult"
+                minlength="1"
+                [(ngModel)]="consult.reasonConsult"
+                #reasonConsultModel="ngModel"
+                #reasonConsultEl
+                [disabled]="true"
+            ></textarea>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-12 col-form-label" for="note">
+                {{ "Note" | localize }}
+            </label>
+            <textarea
+                rows="10"
+                class="form-control"
+                name="note"
+                id="note"
+                minlength="1"
+                [(ngModel)]="consult.note"
+                #noteModel="ngModel"
+                #noteEl
+            ></textarea>
+        </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!editForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

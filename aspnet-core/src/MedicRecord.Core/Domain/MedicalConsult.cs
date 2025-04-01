@@ -24,6 +24,7 @@ namespace MedicRecord.Domain
         public int? TenantId { get; set; }
         public string Note { get; set; }
         public string ReasonConsult { get; set; }
+        public bool IsClosed { get; set; }
 
 
         [ForeignKey("PatientId")]

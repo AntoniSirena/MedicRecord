@@ -42,7 +42,7 @@ namespace MedicRecord.Services.CommonComboBox
             var bloodTypes = bloodTypeRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
             var medicalCenters = medicalCenterRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
             var stateMedicalConsults = stateMedicalConsultRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
-            var medicalAges = medicalAgeRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
+            var medicalAges = medicalAgeRepository.GetAll().Where(x => x.IsDeleted == false);
             var patients = patientRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.FirstName);
 
             output.BloodTypes = bloodTypes.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
