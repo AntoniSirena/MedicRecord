@@ -79,6 +79,8 @@ export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {
     stateMedicalConsults: ComboboxItemDto[];
     medicalAges: ComboboxItemDto[];
     patients: ComboboxItemDto[];
+    diseases: ComboboxItemDto[];
+    symptoms: ComboboxItemDto[];
 
 
     constructor(data?: ICommonComboBoxOutputDto) {
@@ -97,6 +99,8 @@ export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {
             this.stateMedicalConsults = _data["stateMedicalConsults"];
             this.medicalAges = _data["medicalAges"];
             this.patients = _data["patients"];
+            this.symptoms = _data["symptoms"];
+            this.diseases = _data["diseases"];
         }
     }
 
@@ -114,6 +118,8 @@ export class CommonComboBoxOutputDto implements ICommonComboBoxOutputDto {
         data["stateMedicalConsults"] = this.stateMedicalConsults;
         data["medicalAges"] = this.medicalAges;
         data["patients"] = this.patients;
+        data["symptoms"] = this.symptoms;
+        data["diseases"] = this.diseases;
        
         return data;
     }

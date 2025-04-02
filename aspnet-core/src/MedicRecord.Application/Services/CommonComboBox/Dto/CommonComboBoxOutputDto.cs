@@ -23,6 +23,8 @@ namespace MedicRecord.Services.CommonComboBox.Dto
             StateMedicalConsults = new List<ComboboxItemDto>();
             MedicalAges = new List<ComboboxItemDto>();
             Patients = new List<ComboboxItemDto>();
+            Diseases = new List<ComboboxItemDto>();
+            Symptoms = new List<ComboboxItemDto>();
         }
         /// <summary>
         /// 
@@ -32,6 +34,8 @@ namespace MedicRecord.Services.CommonComboBox.Dto
         public List<ComboboxItemDto> StateMedicalConsults { get; set; }
         public List<ComboboxItemDto> MedicalAges { get; set; }
         public List<ComboboxItemDto> Patients { get; set; }
+        public List<ComboboxItemDto> Diseases { get; set; }
+        public List<ComboboxItemDto> Symptoms { get; set; }
 
     }
 }

@@ -20,14 +20,21 @@ namespace MedicRecord.Services.MedicalConsult
     {
         private readonly IAbpSession _session;
         private readonly IRepository<StateMedicalConsult> _stateMedicalConsultRepository;
+        private readonly IRepository<Domain.Disease> _diseaseRepository;
+        private readonly IRepository<Domain.Symptom> _symptomRepository;
 
         public MedicalConsultAppService(IRepository<Domain.MedicalConsult, int> repository,
             IAbpSession session,
-            IRepository<StateMedicalConsult> stateMedicalConsultRepository
+            IRepository<StateMedicalConsult> stateMedicalConsultRepository,
+            IRepository<Domain.Disease> diseaseRepository,
+            IRepository<Domain.Symptom> symptomRepository
+
             ) : base(repository)
         {
             _session = session;
             _stateMedicalConsultRepository = stateMedicalConsultRepository;
+            _diseaseRepository = diseaseRepository;
+            _symptomRepository = symptomRepository;
         }
 
         public override Task<MedicalConsultDto> CreateAsync(MedicalConsultDto input)
@@ -38,7 +45,7 @@ namespace MedicRecord.Services.MedicalConsult
 
             if (consults.Count > 0)
             {
-               throw new UserFriendlyException("El paciente ya tiene una consulta abierta");
+                throw new UserFriendlyException("El paciente ya tiene una consulta abierta");
             }
 
             input.CreationTime = DateTime.UtcNow;
@@ -67,6 +74,7 @@ namespace MedicRecord.Services.MedicalConsult
             input.LastModifierUserId = _session.UserId;
 
             var result = base.UpdateAsync(input);
+
 
             return result;
         }

@@ -14,16 +14,34 @@
         {{consultFullData.patient.firstName +" "+ consultFullData.patient.secondName +" "+ consultFullData.patient.firstSurname +" "+ consultFullData.patient.secondSurname}}
     </h4>
 
-    <br>
-
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
+            <label class="col-md-12 col-form-label" for="reasonConsult">
+                {{ "ReasonConsult" | localize }}
+            </label>
+            <textarea
+                rows="1"
+                class="form-control"
+                name="reasonConsult"
+                id="reasonConsult"
+                minlength="1"
+                [(ngModel)]="consult.reasonConsult"
+                #reasonConsultModel="ngModel"
+                #reasonConsultEl
+                [disabled]="true"
+            ></textarea>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="col-md-4 col-form-label" for="medicalAgeId">
                         {{ "Age" | localize }}
                     </label>
-                    <select name="medicalAge" class="form-control" [(ngModel)]="consult.medicalAgeId" required #ageModel="ngModel" #ageEl>
+                    <select [disabled]="consult.isClosed" name="medicalAge" class="form-control" [(ngModel)]="consult.medicalAgeId" required #ageModel="ngModel" #ageEl>
                         <option *ngFor="let item of comboBoxes?.medicalAges" [value]="item.id">
                           {{item.displayText}}
                         </option>
@@ -34,30 +52,12 @@
                     ></abp-validation-summary>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="col-md-4 col-form-label" for="stateId">
-                        {{ "State" | localize }}
-                    </label>
-                    <select name="state" class="form-control" [(ngModel)]="consult.stateId" required #stateModel="ngModel" #stateEl>
-                        <option *ngFor="let item of comboBoxes?.stateMedicalConsults" [value]="item.id">
-                          {{item.displayText}}
-                        </option>
-                    </select>
-                    <abp-validation-summary
-                        [control]="stateModel"
-                        [controlEl]="stateEl"
-                    ></abp-validation-summary>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="row">
                 <div class="col-md-3">
                     <label class="col-md-3 col-form-label" for="size">
                         {{ "Size" | localize }}
                     </label>
                     <input
+                        [disabled]="consult.isClosed"
                         type="text"
                         class="form-control"
                         name="size"
@@ -80,6 +80,7 @@
                         {{ "Weight" | localize }}
                     </label>
                     <input
+                        [disabled]="consult.isClosed"
                         type="text"
                         class="form-control"
                         name="weight"
@@ -97,11 +98,12 @@
                     ></abp-validation-summary>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="col-md-6 col-form-label" for="headCircumference">
                         {{ "HeadCircumference" | localize }}
                     </label>
                     <input
+                        [disabled]="consult.isClosed"
                         type="text"
                         class="form-control"
                         name="headCircumference"
@@ -126,20 +128,42 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            <label class="col-md-12 col-form-label" for="reasonConsult">
-                {{ "ReasonConsult" | localize }}
+            <label class="col-md-12 col-form-label" for="selectSymptoms">
+                {{ "SelectSymptoms" | localize }}
             </label>
-            <textarea
-                rows="1"
-                class="form-control"
-                name="reasonConsult"
-                id="reasonConsult"
-                minlength="1"
-                [(ngModel)]="consult.reasonConsult"
-                #reasonConsultModel="ngModel"
-                #reasonConsultEl
-                [disabled]="true"
-            ></textarea>
+            <select class="form-select" id="multiple-select-field" multiple [disabled]="consult.isClosed" name="symptoms" class="form-control" [(ngModel)]="consult.symptoms">
+                <option *ngFor="let item of comboBoxes?.symptoms" [value]="item.id">
+                  {{item.displayText}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-12 col-form-label" for="selectSymptoms">
+                {{ "SelectSymptoms" | localize }}
+            </label>
+            <select class="form-select" id="multiple-select-field" multiple [disabled]="consult.isClosed" name="symptoms" class="form-control" [(ngModel)]="consult.symptoms">
+                <option *ngFor="let item of comboBoxes?.symptoms" [value]="item.id">
+                  {{item.displayText}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-12 col-form-label" for="selectDiseases">
+                {{ "SelectDiseases" | localize }}
+            </label>
+            <select [disabled]="consult.isClosed" name="diseases" class="form-control" [(ngModel)]="consult.diseases">
+                <option *ngFor="let item of comboBoxes?.diseases" [value]="item.id">
+                  {{item.displayText}}
+                </option>
+            </select>
         </div>
     </div>
 
@@ -150,7 +174,8 @@
                 {{ "Note" | localize }}
             </label>
             <textarea
-                rows="10"
+                [disabled]="consult.isClosed"
+                rows="7"
                 class="form-control"
                 name="note"
                 id="note"
@@ -162,6 +187,25 @@
         </div>
     </div>
 
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-12 col-form-label" for="stateId">
+                {{ "State" | localize }}
+            </label>
+            <select [disabled]="consult.isClosed" name="state" class="form-control" [(ngModel)]="consult.stateId" required #stateModel="ngModel" #stateEl>
+                <option *ngFor="let item of comboBoxes?.stateMedicalConsults" [value]="item.id">
+                  {{item.displayText}}
+                </option>
+            </select>
+            <abp-validation-summary
+                [control]="stateModel"
+                [controlEl]="stateEl"
+            ></abp-validation-summary>
+        </div>
+    </div>
+
+    <br>
   </div>
   <abp-modal-footer
     [cancelDisabled]="saving"

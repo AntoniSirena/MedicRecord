@@ -122,6 +122,7 @@ export class PatientComponent extends PagedListingComponentBase<PatientDto> {
         EditPatientDialogComponent,
         {
           class: "modal-xl",
+          ignoreBackdropClick: true,
           initialState: {
             id: id,
           },

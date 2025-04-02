@@ -3,6 +3,7 @@ using Abp.AutoMapper;
 using Abp.Domain.Entities;
 using MedicRecord.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace MedicRecord.Services.MedicalConsult.Dto
 {
@@ -24,6 +25,8 @@ namespace MedicRecord.Services.MedicalConsult.Dto
         public string ReasonConsult { get; set; }
         public bool IsClosed { get; set; }
 
+        public List<int> Diseases { get; set; }
+        public List<int> Symptoms { get; set; }
         public virtual Domain.Patient Patient { get; set; }
         public virtual StateMedicalConsult State { get; set; }
 

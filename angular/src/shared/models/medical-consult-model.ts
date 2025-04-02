@@ -27,6 +27,8 @@ export interface IMedicalConsultDto {
     patient: PatientDto;
     state: State;
     isClosed: boolean;
+    diseases: number[];
+    symptoms: number[];
 }
 
 export class MedicalConsultDto implements IMedicalConsultDto {
@@ -54,6 +56,8 @@ export class MedicalConsultDto implements IMedicalConsultDto {
     patient: PatientDto;
     state: State;
     isClosed: boolean;
+    diseases: number[];
+    symptoms: number[];
 
     constructor(data?: IMedicalConsultDto) {
         if (data) {
@@ -90,6 +94,8 @@ export class MedicalConsultDto implements IMedicalConsultDto {
             this.patient = _data["patient"];
             this.state = _data["state"];
             this.isClosed = _data["isClosed"];
+            this.diseases = _data["diseases"];
+            this.symptoms = _data["symptoms"];
         }
     }
 
@@ -126,6 +132,8 @@ export class MedicalConsultDto implements IMedicalConsultDto {
         data["patient"] = this.patient;
         data["state"] = this.state;
         data["isClosed"] = this.isClosed;
+        data["diseases"] = this.diseases;
+        data["symptoms"] = this.symptoms;
         
         return data;
     }

@@ -125,6 +125,7 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
         EditMedicalConsultComponent,
         {
           class: "modal-xl",
+          ignoreBackdropClick: true,
           initialState: {
             id: id,
           },

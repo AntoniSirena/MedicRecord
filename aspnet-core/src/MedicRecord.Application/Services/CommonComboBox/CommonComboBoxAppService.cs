@@ -16,6 +16,9 @@ namespace MedicRecord.Services.CommonComboBox
         private readonly IRepository<StateMedicalConsult> stateMedicalConsultRepository;
         private readonly IRepository<MedicalAge> medicalAgeRepository;
         private readonly IRepository<Domain.Patient> patientRepository;
+        private readonly IRepository<Domain.Disease> diseaseRepository;
+        private readonly IRepository<Domain.Symptom> symptomRepository;
+
 
         public CommonComboBoxAppService(
             IAbpSession session,
@@ -23,7 +26,9 @@ namespace MedicRecord.Services.CommonComboBox
             IRepository<Domain.MedicalCenter> _medicalCenterRepository,
             IRepository<StateMedicalConsult> _stateMedicalConsultRepository,
             IRepository<MedicalAge> _medicalAgeRepository,
-            IRepository<Domain.Patient> _patientRepository
+            IRepository<Domain.Patient> _patientRepository,
+            IRepository<Domain.Disease> _diseaseRepository,
+            IRepository<Domain.Symptom> _symptomRepository
             )
         {
             _session = session;
@@ -32,6 +37,8 @@ namespace MedicRecord.Services.CommonComboBox
             stateMedicalConsultRepository = _stateMedicalConsultRepository;
             medicalAgeRepository = _medicalAgeRepository;
             patientRepository = _patientRepository;
+            diseaseRepository = _diseaseRepository;
+            symptomRepository = _symptomRepository;
         }
 
         [HttpPost]
@@ -44,12 +51,17 @@ namespace MedicRecord.Services.CommonComboBox
             var stateMedicalConsults = stateMedicalConsultRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
             var medicalAges = medicalAgeRepository.GetAll().Where(x => x.IsDeleted == false);
             var patients = patientRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.FirstName);
+            var diseases = diseaseRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
+            var symptoms = symptomRepository.GetAll().Where(x => x.IsDeleted == false).OrderBy(t => t.Name);
+
 
             output.BloodTypes = bloodTypes.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
             output.MedicalCenters = medicalCenters.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Name, DisplayText = x.Name }).ToList();
             output.StateMedicalConsults = stateMedicalConsults.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
             output.MedicalAges = medicalAges.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
             output.Patients = patients.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.RecordNumber, DisplayText = x.FirstName +" "+ x.SecondName + " " +  x.FirstSurname + " " +  x.SecondSurname}).ToList();
+            output.Diseases = diseases.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name}).ToList();
+            output.Symptoms = symptoms.Select(x => new ComboboxItemDto { Id = x.Id, Code = x.Code, DisplayText = x.Name }).ToList();
 
             return await Task.Run(() => output);
         }

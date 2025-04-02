@@ -209,6 +209,8 @@
 		<text name="PatientOpenConsultation">Patient already has an open consultation</text>
 		<text name="ConsultProcessing">Consult processing</text>
 		<text name="Age">Age</text>
+		<text name="SelectDiseases">Select diseases</text>
+		<text name="SelectSymptoms">Select symptoms</text>
 
 	</texts>
 </localizationDictionary>
