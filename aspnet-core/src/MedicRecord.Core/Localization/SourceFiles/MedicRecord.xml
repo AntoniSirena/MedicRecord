@@ -211,6 +211,10 @@
 		<text name="Age">Age</text>
 		<text name="SelectDiseases">Select diseases</text>
 		<text name="SelectSymptoms">Select symptoms</text>
+		<text name="Confirm">Please confirm</text>
+		<text name="AreYouSureWantToClosed">Are you sure want to closed?</text>
+		<text name="Closed">Closed</text>
+		<text name="History">History</text>
 
 	</texts>
 </localizationDictionary>

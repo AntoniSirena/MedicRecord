@@ -17,11 +17,16 @@ export class EditMedicalConsultComponent extends AppComponentBase implements OnI
   saving = false;
   consult: MedicalConsultDto = new MedicalConsultDto();
   id: number;
-  consultFullData: MedicalConsultDto;
 
   @Output() onSave = new EventEmitter<any>();
 
   comboBoxes = new CommonComboBoxOutputDto();
+
+  symptoms: any[] = [];
+  diseases: any[] = [];
+  dropdownSettings: any;
+  selectedSymptoms = [];
+  selectedDiseases = [];
 
   constructor(
     injector: Injector,
@@ -29,31 +34,109 @@ export class EditMedicalConsultComponent extends AppComponentBase implements OnI
     public bsModalRef: BsModalRef,
     private cd: ChangeDetectorRef,
     private commonLookupComboBoxService: CommonLookupComboBoxService,
-    private localDataService: LocalDataService,
   ) {
     super(injector);
   }
 
   ngOnInit(): void {
-    this.medicalConsultService.get(this.id).subscribe((result: MedicalConsultDto) => {
-      this.consult = result;
-      this.getCommonComboboxs();
-      this.cd.detectChanges();
-    });
+    this.getCommonComboboxs();
 
-    this.consultFullData = this.localDataService.getLastMedicalConsult();
-    console.log(this.consultFullData);
+    this.dropdownSettings = {
+      singleSelection: false,
+      text: 'Seleccionas ',
+      selectAllText: 'Seleccionar todos',
+      unSelectAllText: 'Deseleccionar todos',
+      enableSearchFilter: true,
+      classes: '',
+      disabled: false
+    };
+
+    this.cd.detectChanges();
   }
 
   getCommonComboboxs() {
     this.commonLookupComboBoxService.getComboBoxes().subscribe((resp: CommonComboBoxOutputDto) => {
       this.comboBoxes = resp;
-      this.cd.detectChanges();
+
+      this.comboBoxes.symptoms.map(x => {
+        this.symptoms.push(
+          { id: x.id, itemName: x.displayText }
+        )
+      });
+
+      this.comboBoxes.diseases.map(x => {
+        this.diseases.push(
+          { id: x.id, itemName: x.displayText }
+        )
+      });
+
+      this.getConsult();
+    });
+  }
+
+  getConsult() {
+    this.medicalConsultService.get(this.id).subscribe((result: MedicalConsultDto) => {
+      this.consult = result;
+
+      this.medicalConsultService.getData(this.consult.id).subscribe((resp: any) => {
+        this.consult.patient = resp.result.patient;
+
+        if (resp.result.symptoms.length) {
+          resp.result.symptoms.map(x => {
+            this.comboBoxes?.symptoms.map(y => {
+              if (y.id == x) {
+                this.selectedSymptoms.push(
+                  { id: y.id, itemName: y.displayText }
+                )
+              }
+            })
+          });
+        }
+
+        if (resp.result.diseases.length) {
+          resp.result.diseases.map(x => {
+            this.comboBoxes?.diseases.map(y => {
+              if (y.id == x) {
+                this.selectedDiseases.push(
+                  { id: y.id, itemName: y.displayText }
+                )
+              }
+            })
+          });
+        }
+
+        if(this.consult.isClosed){
+          this.dropdownSettings = {
+            disabled: true
+          };
+        }
+
+        this.cd.detectChanges();
+      });
+
     });
   }
 
   save(): void {
     this.saving = true;
+    this.consult.diseases = [];
+    this.consult.symptoms = [];
+
+    if (this.selectedSymptoms.length) {
+      this.selectedSymptoms.map(x => {
+        {
+          this.consult.symptoms.push(x.id);
+        }
+      });
+    }
+
+    if (this.selectedDiseases.length) {
+      this.selectedDiseases.map(x => {
+        {
+          this.consult.diseases.push(x.id);
+        }
+      });
+    }
 
     this.medicalConsultService.update(this.consult).subscribe(
       () => {
@@ -68,4 +151,21 @@ export class EditMedicalConsultComponent extends AppComponentBase implements OnI
 
   }
 
+  refreshSymptoms() {
+    this.symptoms = [];
+    this.comboBoxes.symptoms.forEach(x => {
+      this.symptoms.push(
+        { id: x.id, itemName: x.displayText }
+      )
+    });
+  }
+
+  refreshDiseases() {
+    this.diseases = [];
+    this.comboBoxes.diseases.forEach(x => {
+      this.diseases.push(
+        { id: x.id, itemName: x.displayText }
+      )
+    });
+  }
 }

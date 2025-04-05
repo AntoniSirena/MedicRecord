@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using Abp.UI;
+using Abp.Domain.Uow;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MedicRecord.Services.MedicalConsult
 {
@@ -20,21 +22,24 @@ namespace MedicRecord.Services.MedicalConsult
     {
         private readonly IAbpSession _session;
         private readonly IRepository<StateMedicalConsult> _stateMedicalConsultRepository;
-        private readonly IRepository<Domain.Disease> _diseaseRepository;
-        private readonly IRepository<Domain.Symptom> _symptomRepository;
+        private readonly IRepository<MedicalConsultDisease> _medicalConsultDiseaseRepository;
+        private readonly IRepository<MedicalConsultSymptom> _medicalConsultSymptomRepository;
+        private readonly IRepository<Domain.Patient> _patientRepository;
 
         public MedicalConsultAppService(IRepository<Domain.MedicalConsult, int> repository,
             IAbpSession session,
             IRepository<StateMedicalConsult> stateMedicalConsultRepository,
-            IRepository<Domain.Disease> diseaseRepository,
-            IRepository<Domain.Symptom> symptomRepository
+            IRepository<MedicalConsultDisease> medicalConsultDiseaseRepository,
+            IRepository<MedicalConsultSymptom> medicalConsultSymptomRepository,
+            IRepository<Domain.Patient> patientRepository
 
             ) : base(repository)
         {
             _session = session;
             _stateMedicalConsultRepository = stateMedicalConsultRepository;
-            _diseaseRepository = diseaseRepository;
-            _symptomRepository = symptomRepository;
+            _medicalConsultDiseaseRepository = medicalConsultDiseaseRepository;
+            _medicalConsultSymptomRepository = medicalConsultSymptomRepository;
+            _patientRepository = patientRepository;
         }
 
         public override Task<MedicalConsultDto> CreateAsync(MedicalConsultDto input)
@@ -59,24 +64,80 @@ namespace MedicRecord.Services.MedicalConsult
             input.StartDate = DateTime.UtcNow;
             return base.CreateAsync(input);
         }
-        public override Task<MedicalConsultDto> UpdateAsync(MedicalConsultDto input)
+
+        public override async Task<MedicalConsultDto> UpdateAsync(MedicalConsultDto input)
         {
-            var state = _stateMedicalConsultRepository.GetAll().Where(x => x.Code == GlobalConfiguration.StateMedicalConsult.Closed).FirstOrDefault();
-
-            if (state.Id == input.StateId)
-            {
-                input.EndDate = DateTime.UtcNow;
-                input.NextDate = DateTime.UtcNow.AddDays(30);
-                input.IsClosed = true;
-            }
-
             input.LastModificationTime = DateTime.UtcNow;
             input.LastModifierUserId = _session.UserId;
 
-            var result = base.UpdateAsync(input);
+            var resultBase = await base.UpdateAsync(input);
 
 
-            return result;
+            if (input.Diseases.Count > 0)
+            {
+                var _diseases = _medicalConsultDiseaseRepository.GetAll().Where(x => x.MedicalConsultId == resultBase.Id).ToList();
+
+                foreach (var item in _diseases)
+                {
+                    await _medicalConsultDiseaseRepository.DeleteAsync(item.Id);
+                }
+
+                foreach (var item in input.Diseases)
+                {
+                    var entityModel = new MedicalConsultDisease();
+                    entityModel.MedicalConsultId = input.Id;
+                    entityModel.DiseaseId = item;
+                    entityModel.CreationTime = DateTime.UtcNow;
+                    entityModel.CreatorUserId = _session.UserId;
+                    entityModel.TenantId = _session.TenantId;
+                    entityModel.IsActive = true;
+
+                    await _medicalConsultDiseaseRepository.InsertAsync(entityModel);
+                }
+            }
+            else
+            {
+                var _diseases = _medicalConsultDiseaseRepository.GetAll().Where(x => x.MedicalConsultId == resultBase.Id).ToList();
+
+                foreach (var item in _diseases)
+                {
+                    await _medicalConsultDiseaseRepository.DeleteAsync(item.Id);
+                }
+            }
+
+            if (input.Symptoms.Count > 0)
+            {
+                var _symptoms = _medicalConsultSymptomRepository.GetAll().Where(x => x.MedicalConsultId == resultBase.Id).ToList();
+
+                foreach (var item in _symptoms)
+                {
+                    await _medicalConsultSymptomRepository.DeleteAsync(item.Id);
+                }
+
+                foreach (var item in input.Symptoms)
+                {
+                    var entityModel = new MedicalConsultSymptom();
+                    entityModel.MedicalConsultId = input.Id;
+                    entityModel.SymptomId = item;
+                    entityModel.CreationTime = DateTime.UtcNow;
+                    entityModel.CreatorUserId = _session.UserId;
+                    entityModel.TenantId = _session.TenantId;
+                    entityModel.IsActive = true;
+
+                    await _medicalConsultSymptomRepository.InsertAsync(entityModel);
+                }
+            }
+            else
+            {
+                var _symptoms = _medicalConsultSymptomRepository.GetAll().Where(x => x.MedicalConsultId == resultBase.Id).ToList();
+
+                foreach (var item in _symptoms)
+                {
+                    await _medicalConsultSymptomRepository.DeleteAsync(item.Id);
+                }
+            }
+
+            return resultBase;
         }
 
         protected override IQueryable<Domain.MedicalConsult> CreateFilteredQuery(PagedMedicalConsultResultRequestDto input)
@@ -102,5 +163,35 @@ namespace MedicRecord.Services.MedicalConsult
             }
         }
 
+        [HttpGet]
+        public MedicalConsultDto GetData(int id)
+        {
+            var result = new MedicalConsultDto();
+
+            var consult = Repository.GetAll().Where(x => x.Id == id).FirstOrDefault();
+
+            result.Diseases = _medicalConsultDiseaseRepository.GetAll().Where(x => x.MedicalConsultId == id).Select(x => x.DiseaseId).ToList();
+
+            result.Symptoms = _medicalConsultSymptomRepository.GetAll().Where(x => x.MedicalConsultId == id).Select(x => x.SymptomId).ToList();
+
+            result.Patient = _patientRepository.GetAll().Where(x => x.Id == consult.PatientId).FirstOrDefault();
+
+            return result;
+        }
+
+        [HttpGet]
+        public void ClosedConsult(int id)
+        {
+            var state = _stateMedicalConsultRepository.GetAll().Where(x => x.Code == GlobalConfiguration.StateMedicalConsult.Closed).FirstOrDefault();
+
+            var consult = Repository.GetAll().Where(x => x.Id == id).FirstOrDefault();
+
+            consult.EndDate = DateTime.UtcNow;
+            consult.NextDate = DateTime.UtcNow.AddDays(30);
+            consult.StateId = state.Id;
+            consult.IsClosed = true;
+
+            Repository.Update(consult);
+        }
     }
 }

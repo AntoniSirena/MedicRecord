@@ -35,5 +35,6 @@ namespace MedicRecord.Domain
 
         [ForeignKey("StateId")]
         public virtual StateMedicalConsult State { get; set; }
+
     }
 }

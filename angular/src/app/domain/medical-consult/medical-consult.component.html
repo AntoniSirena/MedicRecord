@@ -138,6 +138,7 @@
 
                     <td>
                       <button
+                        style="margin-right: 10px;"
                         type="button"
                         class="btn btn-sm bg-secondary"
                         (click)="edit(record)"
@@ -149,6 +150,16 @@
 
                       <button
                         type="button"
+                        class="btn btn-sm bg-danger"
+                        (click)="closedConsult(record.id)"
+                        *ngIf="record.state.code == 'Open'"
+                        >
+                        <i class="fas fa-lock"></i>
+                        {{ "Closed" | localize }}
+                      </button>
+
+                      <button
+                        type="button"
                         class="btn btn-sm bg-info"
                         (click)="edit(record)"
                         *ngIf="record.state.code == 'Closed'"
@@ -156,6 +167,7 @@
                         <i class="fas fa-eye"></i>
                         {{ "ViewHitory" | localize }}
                       </button>
+
                     </td>
 
                   </tr>

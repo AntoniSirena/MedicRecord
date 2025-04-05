@@ -45,6 +45,8 @@ import { MedicalConsultComponent } from './domain/medical-consult/medical-consul
 import { CreateMedicalConsultComponent } from './domain/medical-consult/create-medical-consult/create-medical-consult.component';
 import { EditMedicalConsultComponent } from './domain/medical-consult/edit-medical-consult/edit-medical-consult.component';
 
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+
 
 @NgModule({
     declarations: [
@@ -93,7 +95,8 @@ import { EditMedicalConsultComponent } from './domain/medical-consult/edit-medic
         TabsModule,
         ServiceProxyModule,
         NgxPaginationModule,
-        SharedModule
+        SharedModule,
+        AngularMultiSelectModule,
     ],
     providers: [
         DatePipe,

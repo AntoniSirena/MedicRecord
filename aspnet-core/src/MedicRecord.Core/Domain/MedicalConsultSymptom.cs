@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicRecord.Domain
 {
-   public class MedicalConsultSymptom : FullAuditedEntity, IMayHaveTenant
+   public class MedicalConsultSymptom : AuditedEntity, IMayHaveTenant
     {
         public int MedicalConsultId { get; set; }
         public int SymptomId { get; set; }

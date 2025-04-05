@@ -73,7 +73,6 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
         })
       )
       .subscribe((result: MedicalConsultPagedResultDto) => {
-        console.log(result);
         this.primengTableHelper.records = result.items;
         this.primengTableHelper.totalRecordsCount = result.totalCount;
         this.primengTableHelper.hideLoadingIndicator();
@@ -107,7 +106,7 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
 
   edit(input: MedicalConsultDto): void {
     this.localDataService.setLastMedicalConsult(input);
-    
+
     this.showCreateOrEditDialog(input.id);
   }
 
@@ -138,7 +137,29 @@ export class MedicalConsultComponent extends PagedListingComponentBase<MedicalCo
     });
   }
 
-  getPatientHistory(id: number){
-   
+  getPatientHistory(id: number) {
+
+  }
+
+  closedConsult(id: number): void {
+    abp.message.confirm(
+      this.l("AreYouSureWantToClosed"),
+      this.l("Confirm"),
+      (result: boolean) => {
+        if (result) {
+          this.medicalConsultService
+            .closedConsult(id)
+            .pipe(
+              finalize(() => {
+                abp.notify.success(this.l("SuccessfullyClosed"));
+                this.refresh();
+              })
+            )
+            .subscribe(resp => { 
+
+            });
+        }
+      }
+    );
   }
 }

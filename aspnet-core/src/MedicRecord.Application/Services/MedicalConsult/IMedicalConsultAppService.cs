@@ -11,6 +11,7 @@ namespace MedicRecord.Services.MedicalConsult
 {
     public interface IMedicalConsultAppService : IAsyncCrudAppService<MedicalConsultDto, int, PagedMedicalConsultResultRequestDto>
     {
-       // public List<MedicalConsultCustomDto> FilterPatients(PagedMedicalConsultResultRequestDto input);
+       MedicalConsultDto GetData(int id);
+       void ClosedConsult(int id);
     }
 }

@@ -4,6 +4,7 @@ using MedicRecord.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicRecord.Migrations
 {
     [DbContext(typeof(MedicRecordDbContext))]
-    partial class MedicRecordDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250405041225_update model vt")]
+    partial class updatemodelvt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1790,6 +1793,9 @@ namespace MedicRecord.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
+                    b.PrimitiveCollection<string>("Diseases")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -1834,6 +1840,9 @@ namespace MedicRecord.Migrations
 
                     b.Property<int?>("StateId")
                         .HasColumnType("int");
+
+                    b.PrimitiveCollection<string>("Symptoms")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TenantId")
                         .HasColumnType("int");
