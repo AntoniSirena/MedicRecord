@@ -15,6 +15,7 @@ public class MedicRecordAuthorizationProvider : AuthorizationProvider
 
         context.CreatePermission(PermissionNames.Pages_System, L("System"));
         context.CreatePermission(PermissionNames.Pages_Maintenances, L("Maintenances"));
+        context.CreatePermission(PermissionNames.Pages_ConfigurationParameters, L("ConfigurationParameters"));
 
 
         context.CreatePermission(PermissionNames.Pages_MedicalCenters, L("MedicalCenters"));
@@ -28,8 +29,6 @@ public class MedicRecordAuthorizationProvider : AuthorizationProvider
         context.CreatePermission(PermissionNames.Pages_Symptoms_Create, L("SymptomsCreate"));
         context.CreatePermission(PermissionNames.Pages_Symptoms_Update, L("SymptomsUpdate"));
         context.CreatePermission(PermissionNames.Pages_Symptoms_Delete, L("SymptomsDelete"));
-
-        context.CreatePermission(PermissionNames.Pages_ConfigurationParameters, L("ConfigurationParameters"));
 
         context.CreatePermission(PermissionNames.Pages_Diseases, L("Diseases"));
         context.CreatePermission(PermissionNames.Pages_Diseases_GetAll, L("DiseasesGetAll"));

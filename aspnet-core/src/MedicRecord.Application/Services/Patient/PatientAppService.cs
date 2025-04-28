@@ -11,9 +11,12 @@ using Abp.Collections.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using MedicRecord.Domain;
 using MedicRecord.Services.CommonComboBox.Dto;
+using Abp.Authorization;
+using MedicRecord.Authorization;
 
 namespace MedicRecord.Services.Patient
 {
+    [AbpAuthorize(PermissionNames.Pages_Patients)]
     public class PatientAppService : AsyncCrudAppService<Domain.Patient, PatientDto, int, PagedPatientResultPatientDto>, IPatientAppService
     {
         private readonly IAbpSession _session;

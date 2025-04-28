@@ -12,9 +12,12 @@ using Abp.Extensions;
 using Abp.Collections.Extensions;
 using MedicRecord.Authorization.Users;
 using MedicRecord.Users.Dto;
+using Abp.Authorization;
+using MedicRecord.Authorization;
 
 namespace MedicRecord.Services.MedicalCenter
 {
+    [AbpAuthorize(PermissionNames.Pages_MedicalCenters)]
     public class MedicalCenterAppService : AsyncCrudAppService<Domain.MedicalCenter, MedicalCenterDto, int, PagedMedicalCenterResultRequestDto>, IMedicalCenterAppService
     {
         private readonly IAbpSession _session;

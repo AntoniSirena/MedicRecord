@@ -28,7 +28,7 @@
       <div class="form-group">
         <div class="input-group">
           <input
-            type="password"
+            [type]="password"
             class="form-control"
             name="password"
             [(ngModel)]="authService.authenticateModel.password"
@@ -44,11 +44,16 @@
               </div>
             </div>
           </div>
+          <span (click)="onClick()" style="float: right; margin-right: 10px;">
+            <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+            <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+          </span>
           <abp-validation-summary
             [control]="passwordModel"
             [controlEl]="passwordEl"
           ></abp-validation-summary>
         </div>
+        <br>
 
           <!--<div class="form-group row">
           <div class="col-md-8">

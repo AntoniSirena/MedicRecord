@@ -11,6 +11,7 @@ public static class PermissionNames
 
     public const string Pages_System = "Pages.System";
     public const string Pages_Maintenances = "Pages.Maintenances";
+    public const string Pages_ConfigurationParameters = "Pages.ConfigurationParameters";
 
 
     public const string Pages_MedicalCenters = "Pages.MedicalCenters";
@@ -24,8 +25,6 @@ public static class PermissionNames
     public const string Pages_Symptoms_Create = "Pages.Symptoms.Create";
     public const string Pages_Symptoms_Update = "Pages.Symptoms.Update";
     public const string Pages_Symptoms_Delete = "Pages.Symptoms.Delete";
-
-    public const string Pages_ConfigurationParameters = "Pages.ConfigurationParameters";
 
     public const string Pages_Diseases = "Pages.Diseases";
     public const string Pages_Diseases_GetAll = "Pages.Diseases.GetAll";

@@ -3,7 +3,7 @@ using MedicRecord.Services.Disease.Dto;
 
 namespace MedicRecord.Services.Disease
 {
-    interface IDiseaseAppService : IAsyncCrudAppService<DiseaseDto, int, PagedDiseaseResultRequestDto>
+    public interface IDiseaseAppService : IAsyncCrudAppService<DiseaseDto, int, PagedDiseaseResultRequestDto>
     {
     }
 }

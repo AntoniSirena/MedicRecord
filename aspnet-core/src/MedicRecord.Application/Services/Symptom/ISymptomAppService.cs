@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicRecord.Services.Symptom
 {
-    internal interface ISymptomAppService : IAsyncCrudAppService<SymptomDto, int, PagedSymptomResultRequestDto>
+    public interface ISymptomAppService : IAsyncCrudAppService<SymptomDto, int, PagedSymptomResultRequestDto>
     {
     }
 }

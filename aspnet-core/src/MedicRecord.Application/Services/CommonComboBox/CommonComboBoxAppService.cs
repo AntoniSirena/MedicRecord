@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Authorization;
+using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using MedicRecord.Domain;
 using MedicRecord.Services.CommonComboBox.Dto;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicRecord.Services.CommonComboBox
 {
+    [AbpAuthorize]
     public class CommonComboBoxAppService : MedicRecordAppServiceBase, ICommonComboBoxAppService
     {
         private readonly IAbpSession _session;

@@ -15,9 +15,12 @@ using System.Collections.Generic;
 using Abp.UI;
 using Abp.Domain.Uow;
 using Microsoft.AspNetCore.Mvc;
+using Abp.Authorization;
+using MedicRecord.Authorization;
 
 namespace MedicRecord.Services.MedicalConsult
 {
+    [AbpAuthorize(PermissionNames.Pages_MedicalConsults)]
     public class MedicalConsultAppService : AsyncCrudAppService<Domain.MedicalConsult, MedicalConsultDto, int, PagedMedicalConsultResultRequestDto>, IMedicalConsultAppService
     {
         private readonly IAbpSession _session;

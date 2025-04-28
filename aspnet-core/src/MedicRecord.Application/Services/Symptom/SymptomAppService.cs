@@ -6,9 +6,12 @@ using MedicRecord.Services.Symptom.Dto;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using Abp.Collections.Extensions;
+using Abp.Authorization;
+using MedicRecord.Authorization;
 
 namespace MedicRecord.Services.Symptom
 {
+    [AbpAuthorize(PermissionNames.Pages_Symptoms)]
     public class SymptomAppService : AsyncCrudAppService<Domain.Symptom, SymptomDto, int, PagedSymptomResultRequestDto>, ISymptomAppService
     {
         private readonly IAbpSession _session;

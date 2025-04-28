@@ -11,12 +11,29 @@ import { AppAuthService } from '@shared/auth/app-auth.service';
 export class LoginComponent extends AppComponentBase {
   submitting = false;
 
+  password;
+  show = false;
+
   constructor(
     injector: Injector,
     public authService: AppAuthService,
     private _sessionService: AbpSessionService
   ) {
     super(injector);
+  }
+
+  ngOnInit() {
+    this.password = 'password';
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
+    }
   }
 
   get multiTenancySideIsTeanant(): boolean {

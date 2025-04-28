@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicRecord.Services.CommonComboBox
 {
-    interface ICommonComboBoxAppService: IApplicationService
+    public interface ICommonComboBoxAppService : IApplicationService
     {
         Task<CommonComboBoxOutputDto> GetComboBoxes();
     }

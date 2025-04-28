@@ -6,9 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using Abp.Collections.Extensions;
+using Abp.Authorization;
+using System.Security.Permissions;
+using MedicRecord.Authorization;
 
 namespace MedicRecord.Services.Disease
 {
+    [AbpAuthorize(PermissionNames.Pages_Diseases)]
     public class DiseaseAppService : AsyncCrudAppService<Domain.Disease, DiseaseDto, int, PagedDiseaseResultRequestDto>, IDiseaseAppService
     {
         private readonly IAbpSession _session;
